@@ -1,3 +1,4 @@
+
 if vim.g.vscode then
   require "vscode"
   require "user.options"
@@ -5,7 +6,8 @@ else
   require "user.impatient"
   require "user.options"
   require "user.keymaps"
-  require "user.plugins"
+  -- require "user.plugins"
+  require "user.lazy"
   require "user.autocommands"
   require "user.colorscheme"
   require "user.cmp"
