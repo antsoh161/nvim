@@ -1,5 +1,5 @@
 local servers = {
-	"sumneko_lua",
+	"lua_ls",
 	"cssls",
 	"html",
 	"tsserver",
@@ -11,6 +11,7 @@ local servers = {
   "rust_analyzer",
   "dockerls",
   "cmake",
+  "dockerls",
 }
 
 local settings = {
