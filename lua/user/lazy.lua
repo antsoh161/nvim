@@ -55,9 +55,9 @@ local plugins = {
    { "rafamadriz/friendly-snippets", commit = "484fb38b8f493ceeebf4e6fc499ebe41e10aae25" }, -- a bunch of snippets to use
   -- LSP
   --  { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
-   { "neovim/nvim-lspconfig", commit = "41dc4e017395d73af0333705447e858b7db1f75e" }, -- enable LSP
-   { "williamboman/mason.nvim", commit = "369d520350b4c1af40630f90c3703444c40c065a" },
-   { "williamboman/mason-lspconfig.nvim", commit = "33a198bc5ee0215ae8ab3f61781b29103cf4ca5a" },
+   { "neovim/nvim-lspconfig", commit = "eddaef928c1e1dd79a96f5db45f2fd7f2efe7ea0" }, -- enable LSP
+   { "williamboman/mason.nvim", commit = "7f364a3c9b3f77ead3dc5316cf6918d944fc3621" },
+   { "williamboman/mason-lspconfig.nvim", commit = "7034065099c1665143091c7282b3b1b8f0b23783" },
    { "jose-elias-alvarez/null-ls.nvim", commit = "915558963709ea17c5aa246ca1c9786bfee6ddb4" }, -- for formatters and linters
    { "RRethy/vim-illuminate", commit = "a6d0b28ea7d6b9d139374be1f94a16bd120fcda3" },
 

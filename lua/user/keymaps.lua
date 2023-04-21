@@ -123,6 +123,8 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
+
 
 -- Ask for qutting because i lost like 2 hours of work once
 local function smart_quit()
