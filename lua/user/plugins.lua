@@ -51,7 +51,7 @@ return packer.startup(function(use)
   use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "4a42b30376c1bd625ab5016c2079631d531d797a" }
   use { "kyazdani42/nvim-web-devicons", commit = "7f55bc36eddec87597167a97de5b690997edaf7d" }
   use { "nvim-tree/nvim-tree.lua", commit = "ccb6d8a518d32e22bf5874f90e6c22661a5d8b46" }
-  use { "akinsho/bufferline.nvim", commit = "c7492a76ce8218e3335f027af44930576b561013" }
+  use { "akinsho/bufferline.nvim", commit = "243893ba9d5d1049dd451a25cab32ec7f8f67bcf" }
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "d8c392dd75778d6258da4e7c55522e94ac389732" }
   use { "akinsho/toggleterm.nvim", commit = "b02a1674bd0010d7982b056fd3df4f717ff8a57a" }
@@ -64,7 +64,7 @@ return packer.startup(function(use)
   -- use { "notjedi/nvim-rooter.lua", commit = "833e6a37fafb9b2acb6228b9005c680face2a20f" } 
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim", commit = "def91651c41f6d1d43ebcb50763324d35331baee" }
+  use { "folke/tokyonight.nvim", commit = "ff81eac0ecf85db235dfc4c9d54f2d07d662a423" }
   use { "lunarvim/darkplus.nvim", commit = "1826879d9cb14e5d93cd142d19f02b23840408a6" }
 
   -- cmp plugins
