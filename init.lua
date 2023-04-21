@@ -1,4 +1,3 @@
-
 if vim.g.vscode then
   require "vscode"
   require "user.options"
