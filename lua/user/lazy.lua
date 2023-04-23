@@ -41,6 +41,7 @@ local plugins = {
   -- Colorschemes
    { "folke/tokyonight.nvim", commit = "ff81eac0ecf85db235dfc4c9d54f2d07d662a423" },
    { "lunarvim/darkplus.nvim", commit = "1826879d9cb14e5d93cd142d19f02b23840408a6" },
+   { "ellisonleao/gruvbox.nvim", commit = "487598d979868224aff92cf8818195c1a60e5dfe" },
 
   -- cmp plugins
    { "hrsh7th/nvim-cmp", commit = "777450fd0ae289463a14481673e26246b5e38bf2" }, -- The completion plugin

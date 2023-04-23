@@ -2,7 +2,7 @@ if vim.g.vscode then
   require "vscode"
   require "user.options"
 else
-  require "user.impatient"
+  -- require "user.impatient"
   require "user.options"
   require "user.keymaps"
   require "user.lazy"
