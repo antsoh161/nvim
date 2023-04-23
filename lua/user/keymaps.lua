@@ -23,7 +23,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Toggle hybrid relative line numbers
 -- :set nu for absolute
-keymap("n", "<leader>nn",":set nu rnu!<CR>", opts)
+keymap("n", "<leader>nn", ":set nu rnu!<CR>", opts)
 
 -- Move to first word instead of beginning of line
 keymap("n", "0", "^", opts)
@@ -39,8 +39,8 @@ keymap("n", "<leader>s", ":w<CR>", opts)
 keymap("n", "J", "5j<CR>", opts)
 keymap("n", "K", "5k<CR>", opts)
 
--- join lines 
-keymap("n","<leader>J", "J<CR>",opts)
+-- join lines
+keymap("n", "<leader>J", "J<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -101,7 +101,7 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
 
--- Telescope Git 
+-- Telescope Git
 -- TODO: remove this prob
 -- keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
 -- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
@@ -127,27 +127,38 @@ keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
 
 
 -- Ask for qutting because i lost like 2 hours of work once
+local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
+local LAST_WINDOW_PROMPT = "This is the last window. Quit the editor? (y/n)"
+
+local function display_prompt(prompt, callback)
+  vim.ui.input({ prompt = prompt }, function(input)
+    if input == "y" or input == "Y" then
+      callback()
+    end
+  end)
+end
+
 local function smart_quit()
   local bufnr = vim.api.nvim_get_current_buf()
   local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+
+  local display_confirm = false
+  local confirm_callback
   if modified then
-    vim.ui.input({
-      prompt = "You have unsaved changes. Quit anyway? (y/n) ",
-    }, function(input)
-      if input == "y" then
-        vim.cmd "q!"
-      end
-    end)
+    display_confirm = true
+    confirm_callback = function() vim.cmd "q!" end
   elseif #vim.api.nvim_list_wins() <= 2 then
-    vim.ui.input({
-      prompt = "This is the last window. Quit the editor? (y/n)",
-    }, function(input)
-      if input == "y" then
-        vim.cmd "q!"
-      end
-    end)
+    display_confirm = true
+    confirm_callback = function() vim.cmd "q!" end
   else
     vim.cmd "q!"
+  end
+  if display_confirm then
+    if modified then
+      display_prompt(UNSAVED_CHANGES_PROMPT, confirm_callback)
+    else
+      display_prompt(LAST_WINDOW_PROMPT, confirm_callback)
+    end
   end
 end
 keymap("n", "<C-q>", smart_quit, opts)
