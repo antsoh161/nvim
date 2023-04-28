@@ -41,7 +41,7 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-	return "🦍 It's bouga time 🦍"
+	return "🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍 🦍"
 end
 dashboard.section.footer.val = footer()
 
