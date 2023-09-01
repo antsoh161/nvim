@@ -1,8 +1,11 @@
+-- disable netrw so it does not conflict with nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 if vim.g.vscode then
   require "vscode"
   require "user.options"
 else
-  -- require "user.impatient"
   require "user.options"
   require "user.keymaps"
   require "user.lazy"

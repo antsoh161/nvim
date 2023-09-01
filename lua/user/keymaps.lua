@@ -86,6 +86,7 @@ keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
 -- toggleterm
 -- press 'a' to jump back to insert mode in terminal
 keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
+-- keymap("n", "<leader>tb", ":Toggle")
 
 -- scope / tabs
 -- tabnext is toggle right, tabNext is toggle left (nice naming choice)

@@ -3,13 +3,6 @@ if not status_ok then
   return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
 local my_root_folder_label = function(path)
           return vim.fn.fnamemodify(path, ":t") .. "/.."
 end
@@ -17,7 +10,23 @@ end
 -- Hack for folder icons, will get removed if color scheme is changed
 vim.cmd "highlight NvimTreeFolderIcon guifg=#e0af68"
 
-nvim_tree.setup {
+local function my_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- Nvim tree keymaps
+  local keymap = vim.keymap.set
+  keymap('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
+  keymap('n', 'l', api.node.open.edit, opts('Open'))
+  keymap('n', '<CR>', api.tree.change_root_to_node, opts('CD'))
+end
+
+nvim_tree.setup({
+  on_attach = my_on_attach,
   sync_root_with_cwd = true,
   -- respect_buf_cwd = true,
   update_focused_file = {
@@ -68,14 +77,6 @@ nvim_tree.setup {
     width = 35,
     side = "left",
     -- adaptive_size = true,
-    mappings = {
-      list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
-        { key = "g", cb = tree_cb "cd" },
-      },
-    },
   },
   git = {
     ignore = true,
@@ -83,4 +84,4 @@ nvim_tree.setup {
   filters = {
     dotfiles = true,
   },
-}
+})
