@@ -1,4 +1,4 @@
-local servers = {
+local lsp_servers = {
 	"lua_ls",
 	"cssls",
 	"html",
@@ -14,22 +14,8 @@ local servers = {
   "dockerls",
 }
 
-local settings = {
-	ui = {
-		border = "none",
-		icons = {
-			package_installed = "◍",
-			package_pending = "◍",
-			package_uninstalled = "◍",
-		},
-	},
-	log_level = vim.log.levels.INFO,
-	max_concurrent_installers = 4,
-}
-
-require("mason").setup(settings)
 require("mason-lspconfig").setup({
-	ensure_installed = servers,
+	ensure_installed = lsp_servers,
 	automatic_installation = true,
 })
 
@@ -40,7 +26,7 @@ end
 
 local opts = {}
 
-for _, server in pairs(servers) do
+for _, server in pairs(lsp_servers) do
 	opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,

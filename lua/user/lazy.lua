@@ -35,6 +35,7 @@ local plugins = {
   --  {"folke/which-key.nvim"},
   { "tiagovla/scope.nvim",                         commit = "b783c77175a3026d19152fd938a5cc066c2f6676" },
   --  { "notjedi/nvim-rooter.lua", commit = "833e6a37fafb9b2acb6228b9005c680face2a20f" } ,
+  { "folke/neodev.nvim",                           commit = "183f5a7357397260b631d6cccceccc3621b50f78" },
 
   -- Colorschemes
   { "folke/tokyonight.nvim",                       commit = "9a01eada39558dc3243278e6805d90e8dff45dc0" },
@@ -58,6 +59,7 @@ local plugins = {
   { "neovim/nvim-lspconfig",                       commit = "a27356f1ef9c11e1f459cc96a3fcac5c265e72d6" }, -- enable LSP
   { "williamboman/mason.nvim",                     commit = "0942198fb9a998b6ccee36fb8dd7495eb8ba659c" },
   { "williamboman/mason-lspconfig.nvim",           commit = "dfdd771b792fbb4bad8e057d72558255695aa1a7" },
+  { "williamboman/mason-nvim-dap.nvim",            commit = "6148b51db945b55b3b725da39eaea6441e59dff8" },
   { "jose-elias-alvarez/null-ls.nvim",             commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" }, -- for formatters and linters
   { "RRethy/vim-illuminate",                       commit = "76f28e858f1caae87bfa45fb4fd09e4b053fc45b" },
 
@@ -70,11 +72,11 @@ local plugins = {
   },
 
   -- Git
-  { "lewis6991/gitsigns.nvim",  commit = "44adf808ace6cb65a3353bd61fa585a2d8fe0db3" },
+  { "lewis6991/gitsigns.nvim", commit = "44adf808ace6cb65a3353bd61fa585a2d8fe0db3" },
 
   -- DAP
-  { "mfussenegger/nvim-dap",    commit = "31e1ece773e10448dcb616d5144290946a6264b7" },
-  { "rcarriga/nvim-dap-ui",     commit = "85b16ac2309d85c88577cd8ee1733ce52be8227e" },
+  { "mfussenegger/nvim-dap",   commit = "31e1ece773e10448dcb616d5144290946a6264b7" },
+  { "rcarriga/nvim-dap-ui",    commit = "85b16ac2309d85c88577cd8ee1733ce52be8227e" },
 }
 
 local opts = {}

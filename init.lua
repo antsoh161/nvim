@@ -8,7 +8,8 @@ if vim.g.vscode then
 else
   require "user.options"
   require "user.keymaps"
-  require "user.lazy"
+  require "user.lazy"  -- Don't set up any plugin before lazy
+  require "user.mason" -- Should be set up before user.lsp and user.dap
   require "user.autocommands"
   require "user.colorscheme"
   require "user.cmp"
@@ -28,5 +29,4 @@ else
   require "user.lsp"
   require "user.dap"
   require "user.scope"
-   -- require "user.nvim-rooter"
 end
