@@ -1,6 +1,7 @@
-local status_ok, scope = pcall(require, "scope")
-if not status_ok then
-	return
-end
+local M = {
+  "tiagovla/scope.nvim",
+  commit = "b783c77175a3026d19152fd938a5cc066c2f6676",
+  event = "VeryLazy",
+}
 
-scope.setup({})
+return M

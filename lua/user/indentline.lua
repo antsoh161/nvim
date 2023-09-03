@@ -1,9 +1,9 @@
-local status_ok, indent_blankline = pcall(require, "indent_blankline")
-if not status_ok then
-  return
-end
-
-indent_blankline.setup {
+local M = {
+  "lukas-reineke/indent-blankline.nvim",
+  commit = "9637670896b68805430e2f72cf5d16be5b97a22a",
+  event = "BufReadPre",
+}
+M.opts = {
   char = "▏",
   show_trailing_blankline_indent = false,
   show_first_indent_level = true,
@@ -16,3 +16,5 @@ indent_blankline.setup {
     "NvimTree",
   },
 }
+
+return M

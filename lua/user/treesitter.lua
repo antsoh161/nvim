@@ -1,13 +1,21 @@
-local status_ok, treesitter = pcall(require, "nvim-treesitter")
-if not status_ok then
-	return
-end
-
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-	return
-end
-
+local M = {
+  "nvim-treesitter/nvim-treesitter",
+  commit = "691d73287a94e8ed82a383df82aabfe77ab4bcaa",
+  event = "BufReadPost",
+  dependencies = {
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "VeryLazy",
+    },
+    {
+      "nvim-tree/nvim-web-devicons",
+      event = "VeryLazy",
+    },
+  },
+}
+function M.config()
+  local treesitter = require("nvim-treesitter")
+  local configs = require("nvim-treesitter.configs")
 configs.setup({
   ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "rust", "c", "cpp", "cmake", "yaml", "toml"}, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages
@@ -28,3 +36,6 @@ configs.setup({
 	},
 
 })
+end
+
+return M

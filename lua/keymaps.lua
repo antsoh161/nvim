@@ -79,7 +79,8 @@ keymap("v", "<C-J>", ":m '>+1<CR>gv=gv", opts)
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>ee", ":NvimTreeToggle<CR>", opts)
+-- silent! because this clashes with highlighting on startup
+keymap("n", "<leader>ee", ":silent! NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
 
 -- toggleterm
@@ -95,11 +96,11 @@ keymap("n", "<leader>tl", ":tabnext<CR>", opts)
 keymap("n", "<leader>th", ":tabNext<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
+keymap("n", "<leader>ft", ":silent! Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
+keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
+keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
 
 -- Telescope Git
 -- TODO: remove this prob
@@ -123,42 +124,46 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+keymap("x", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
-
 
 -- Ask for qutting because i lost like 2 hours of work once
 local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
 local LAST_WINDOW_PROMPT = "This is the last window. Quit the editor? (y/n)"
 
 local function display_prompt(prompt, callback)
-  vim.ui.input({ prompt = prompt }, function(input)
-    if input == "y" or input == "Y" then
-      callback()
-    end
-  end)
+	vim.ui.input({ prompt = prompt }, function(input)
+		if input == "y" or input == "Y" then
+			callback()
+		end
+	end)
 end
 
 local function smart_quit()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+	local bufnr = vim.api.nvim_get_current_buf()
+	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
 
-  local display_confirm = false
-  local confirm_callback
-  if modified then
-    display_confirm = true
-    confirm_callback = function() vim.cmd "q!" end
-  elseif #vim.api.nvim_list_wins() <= 2 then
-    display_confirm = true
-    confirm_callback = function() vim.cmd "q!" end
-  else
-    vim.cmd "q!"
-  end
-  if display_confirm then
-    if modified then
-      display_prompt(UNSAVED_CHANGES_PROMPT, confirm_callback)
-    else
-      display_prompt(LAST_WINDOW_PROMPT, confirm_callback)
-    end
-  end
+	local display_confirm = false
+	local confirm_callback
+	if modified then
+		display_confirm = true
+		confirm_callback = function()
+			vim.cmd("q!")
+		end
+	elseif #vim.api.nvim_list_wins() <= 2 then
+		display_confirm = true
+		confirm_callback = function()
+			vim.cmd("q!")
+		end
+	else
+		vim.cmd("q!")
+	end
+	if display_confirm then
+		if modified then
+			display_prompt(UNSAVED_CHANGES_PROMPT, confirm_callback)
+		else
+			display_prompt(LAST_WINDOW_PROMPT, confirm_callback)
+		end
+	end
 end
 keymap("n", "<C-q>", smart_quit, opts)

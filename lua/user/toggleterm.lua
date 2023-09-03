@@ -1,9 +1,11 @@
-local status_ok, toggleterm = pcall(require, "toggleterm")
-if not status_ok then
-	return
-end
+local M = {
+  "akinsho/toggleterm.nvim",
+  commit = "12cba0a1967b4f3f31903484dec72a6100dcf515",
+  event = "VeryLazy",
+}
 
-toggleterm.setup({
+function M.config() 
+  require("toggleterm").setup({
 	size = 30,
 	open_mapping = [[<c-\>]],
 	hide_numbers = true,
@@ -33,3 +35,6 @@ function _G.set_terminal_keymaps()
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+end
+
+return M

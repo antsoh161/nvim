@@ -1,7 +1,11 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-  return
-end
+local M = {
+  "nvim-lualine/lualine.nvim",
+  commit = "45e27ca739c7be6c49e5496d14fcf45a303c3a63",
+  event = { "VimEnter", "InsertEnter", "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
+}
+
+function M.config()
+  local lualine = require("lualine")
 
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
@@ -65,3 +69,6 @@ lualine.setup {
     lualine_z = { "progress" },
   },
 }
+end
+
+return M
