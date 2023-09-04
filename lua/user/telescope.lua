@@ -1,7 +1,7 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   commit = "2c1ed33a6f6f2db3b69f5421f6b405eda1b07748",
-  --event = "Bufenter",
+  event = "Bufenter",
   cmd = { "Telescope" },
   dependencies = {
     {
@@ -13,7 +13,6 @@ local M = {
 function M.config()
   local actions = require("telescope.actions")
   local layout = require("telescope.actions.layout")
-  local utils = require("telescope.utils")
   require("telescope").setup({
   defaults = {
     prompt_prefix = " ",
@@ -34,17 +33,17 @@ function M.config()
       },
     },
   },
-  pickers = {
-    find_files = {
-      hidden = true,
-      find_command = {
-        'rg',
-        '--files',
-        '--color',
-        'never',
-      },
-    },
-  },
+  -- pickers = {
+    -- find_files = {
+    --   hidden = true,
+    --   find_command = {
+    --     'rg',
+    --     '--files',
+    --     '--color',
+    --     'never',
+    --   },
+    -- },
+  -- },
   })
 end
 
