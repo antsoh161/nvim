@@ -31,7 +31,6 @@ function M.config()
   require("nvim-tree").setup({
     on_attach = on_attach,
     sync_root_with_cwd = true,
-    -- respect_buf_cwd = true,
     update_focused_file = {
       enable = true,
       update_root = true,
@@ -67,8 +66,8 @@ function M.config()
       },
     },
     diagnostics = {
-      enable = true,
-      show_on_dirs = true,
+      enable = false,
+      show_on_dirs = false,
       icons = {
         hint = "",
         info = "",
@@ -82,6 +81,7 @@ function M.config()
       -- adaptive_size = true,
     },
     git = {
+      enable = false,
       ignore = true,
     },
     filters = {

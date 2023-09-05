@@ -75,12 +75,13 @@ function M.config()
 
   local config = {
     -- disable virtual text
-    virtual_text = { format },
+    -- virtual_text = { format },
+    virtual_text = { false },
     -- show signs
     signs = {
       active = signs,
     },
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {
