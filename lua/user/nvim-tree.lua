@@ -30,10 +30,10 @@ end
 function M.config()
   require("nvim-tree").setup({
     on_attach = on_attach,
-    sync_root_with_cwd = true,
+    sync_root_with_cwd = false,
     update_focused_file = {
       enable = true,
-      update_root = true,
+      update_root = false,
     },
     renderer = {
       root_folder_label = my_root_folder_label,
