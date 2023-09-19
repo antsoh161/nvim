@@ -78,10 +78,11 @@ function M.config()
     -- virtual_text = { format },
     virtual_text = { false },
     -- show signs
-    signs = {
-      active = signs,
-    },
-    update_in_insert = false,
+    -- signs = {
+    --   active = signs,
+    -- },
+    signs = false,
+    update_in_insert = true,
     underline = true,
     severity_sort = true,
     float = {
