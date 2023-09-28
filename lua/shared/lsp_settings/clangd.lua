@@ -2,7 +2,7 @@ return {
   cmd = {
     "clangd",
     "--enable-config",
-    "--log=verbose",
+    "--log=error",
     "--pretty",
     "--j=4",
   }
