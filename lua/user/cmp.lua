@@ -1,10 +1,10 @@
 local M = {
   "hrsh7th/nvim-cmp",
-  commit = "5dce1b778b85c717f6614e3f4da45e9f19f54435",
+  commit = "d3a3056204e1a9dbb7c7fe36c114dc43b681768c",
   dependencies = {
     {
       "hrsh7th/cmp-nvim-lsp",
-      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+      commit = "44b16d11215dce86f253ce0c30949813c0a90765",
     },
     {
       "hrsh7th/cmp-buffer",
@@ -20,15 +20,15 @@ local M = {
     },
     {
       "saadparwaiz1/cmp_luasnip",
-      commit = "18095520391186d634a0045dacaa346291096566",
+      commit = "05a9ab28b53f71d1aece421ef32fee2cb857a843",
     },
     {
       "L3MON4D3/LuaSnip",
-      commit = "ea7d7ea510c641c4f15042becd27f35b3e5b3c2b",
+      commit = "80a8528f084a97b624ae443a6f50ff8074ba486b",
       event = "InsertEnter",
       dependencies = {
         "rafamadriz/friendly-snippets",
-        commit = "00e191fea2cfbbdd378243f35b5953296537a116",
+        commit = "43727c2ff84240e55d4069ec3e6158d74cb534b6",
       },
     },
     {

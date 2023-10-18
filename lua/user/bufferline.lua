@@ -1,6 +1,6 @@
 local M = {
   "akinsho/bufferline.nvim",
-  commit = "9961d87bb3ec008213c46ba14b3f384a5f520eb5",
+  commit = "357cc8f8eeb64702e6fcf2995e3b9becee99a5d3",
   event = { "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
   dependencies = {
     {

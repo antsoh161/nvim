@@ -90,10 +90,10 @@ keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
 
 -- scope / tabs
 -- tabnext is toggle right, tabNext is toggle left (nice naming choice)
-keymap("n", "<leader>tt", ":tabnew<CR>", opts)
-keymap("n", "<leader>tc", ":tabclose<CR>", opts)
-keymap("n", "<leader>tl", ":tabnext<CR>", opts)
-keymap("n", "<leader>th", ":tabNext<CR>", opts)
+-- keymap("n", "<leader>tt", ":tabnew<CR>", opts)
+-- keymap("n", "<leader>tc", ":tabclose<CR>", opts)
+-- keymap("n", "<leader>tl", ":tabnext<CR>", opts)
+-- keymap("n", "<leader>th", ":tabNext<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)

@@ -1,7 +1,7 @@
 -- This is the default colorscheme
 return {
   "folke/tokyonight.nvim",
-  commit = "e52c41314e83232840d6970e6b072f9fba242eb9",
+  commit = "633039585dff7fd2b9b62fb190bf768702609d95",
   lazy = false,    -- make sure we load this during startup if it is your main colorscheme
   priority = 1000, -- make sure to load this before all the other start plugins
   name = "tokyonight-night",

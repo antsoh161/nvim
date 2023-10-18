@@ -1,6 +1,6 @@
 local M = {
   "numToStr/Comment.nvim",
-  commit = "a89339ffbee677ab0521a483b6dac7e2e67c907e",
+  commit = "0236521ea582747b58869cb72f70ccfa967d2e89",
   event = { "BufRead", "BufNewFile" },
   dependencies = {
     {
