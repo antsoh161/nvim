@@ -1,6 +1,6 @@
 local M = {
   "nvim-tree/nvim-tree.lua",
-  commit = "40b9b887d090d5da89a84689b4ca0304a9649f62",
+  commit = "fa00b57873008700a83c1387f02ef2c6fc183b53",
   event = "VimEnter",
 }
 

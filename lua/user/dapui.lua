@@ -5,6 +5,7 @@ local M = {
   dependencies = {
     {
       "mfussenegger/nvim-dap",
+      commit = "e154fdb6d70b3765d71f296e718b29d8b7026a63",
       event = "VeryLazy",
     },
   },

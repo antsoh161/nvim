@@ -1,6 +1,6 @@
 local M = {
   "lewis6991/gitsigns.nvim",
-  commit = "5a9a6ac29a7805c4783cda21b80a1e361964b3f2",
+  commit = "5fc573f2d2a49aec74dd6dc977e8b137429d1897",
   event = "BufReadPre",
 }
 
@@ -20,7 +20,7 @@ M.opts = {
     follow_files = true,
   },
   attach_to_untracked = true,
-  current_line_blame = false,
+  current_line_blame = true,
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'

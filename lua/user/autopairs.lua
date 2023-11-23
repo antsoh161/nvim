@@ -1,18 +1,17 @@
 local M = {
   "windwp/nvim-autopairs",
-  commit = "f6c71641f6f183427a651c0ce4ba3fb89404fa9e",
+  commit = "0f04d78619cce9a5af4f355968040f7d675854a1",
   event = "InsertEnter",
   dependencies = {
     {
       "hrsh7th/nvim-cmp",
       event = {
         "InsertEnter",
-        "CmdlineEnter",
+        -- "CmdlineEnter",
       },
     },
   },
 }
-
 function M.config()
   require("nvim-autopairs").setup {
     check_ts = true, -- treesitter integration

@@ -16,7 +16,7 @@ vim.g.mapleader = " "
 -- Install every plugin in user/
 require("lazy").setup("user", {
   install = { colorscheme = { require("user.colorscheme").name } },
-  default = { lazy = false, version = "2a9354c7d2368d78cbd5575a51a2af5bd8a6ad01" },
+  default = { lazy = false, version = "96584866b9c5e998cbae300594d0ccfd0c464627" },
   ui = { wrap = "true" },
   change_detection = { enabled = true },
   debug = false,

@@ -1,20 +1,20 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
-  commit = "9301e434dd41154ffe5c3d5b8a5c9acd075ebeff",
+  commit = "29be0919b91fb59eca9e90690d76014233392bef",
   event = "BufReadPre",
+  main = "ibl",
 }
-M.opts = {
-  char = "▏",
-  show_trailing_blankline_indent = false,
-  show_first_indent_level = true,
-  use_treesitter = true,
-  show_current_context = true,
-  buftype_exclude = { "terminal", "nofile" },
-  filetype_exclude = {
-    "help",
-    "packer",
-    "NvimTree",
-  },
+
+local highlight = {
+    "CursorColumn",
+    "Whitespace",
 }
+
+function M.config()
+  require("ibl").setup( {
+    indent = { char = "▏" },
+  }
+)
+end
 
 return M

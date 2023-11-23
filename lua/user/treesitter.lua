@@ -1,6 +1,6 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  commit = "afa103385a2b5ef060596ed822ef63276ae88016",
+  commit = "71bdf97bf6dafc776ad957169533f2f669a8c562",
   event = "BufReadPost",
   dependencies = {
     {
@@ -30,10 +30,10 @@ configs.setup({
 	},
 	indent = { enable = true, disable = { "python", "css" } },
 
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
+	-- context_commentstring = {
+	-- 	enable = true,
+	-- 	enable_autocmd = false,
+	-- },
 
 })
 end

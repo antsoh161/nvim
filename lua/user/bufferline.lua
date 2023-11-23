@@ -1,7 +1,7 @@
 local M = {
   "akinsho/bufferline.nvim",
-  commit = "357cc8f8eeb64702e6fcf2995e3b9becee99a5d3",
-  event = { "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
+  commit = "9e8d2f695dd50ab6821a6a53a840c32d2067a78a",
+  event = "VimEnter",
   dependencies = {
     {
       "famiu/bufdelete.nvim",
@@ -20,7 +20,7 @@ function M.config()
 
     highlights = {
       fill = {
-        fg = { attribute = "fg", highlight = "#ff0000" },
+        fg = { attribute = "fg", highlight = "TabLine" },
         bg = { attribute = "bg", highlight = "TabLine" },
       },
 

@@ -5,6 +5,7 @@ local M = {
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
+      commit = "bdd2a3293340465a516b126d10894f6d5cb5213c",
       event = "VeryLazy",
     },
   },
