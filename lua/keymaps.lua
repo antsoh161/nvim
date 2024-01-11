@@ -129,7 +129,7 @@ keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
 
 -- Ask for qutting because i lost like 2 hours of work once
 local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
-local LAST_WINDOW_PROMPT = "This is the last window. Quit the editor? (y/n)"
+local LAST_WINDOW_PROMPT = "This is the last window. Quit neovim? (y/n)"
 
 local function display_prompt(prompt, callback)
 	vim.ui.input({ prompt = prompt }, function(input)
@@ -142,6 +142,13 @@ end
 local function smart_quit()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  local nr_wins = #vim.api.nvim_list_wins()
+  for _, win_id in ipairs(vim.api.nvim_list_wins()) do
+    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
+    if bufname:match("NvimTree_") then
+      nr_wins = nr_wins - 1 -- Don't count the tree as a window
+  end
+  end
 
 	local display_confirm = false
 	local confirm_callback
@@ -150,10 +157,10 @@ local function smart_quit()
 		confirm_callback = function()
 			vim.cmd("q!")
 		end
-	elseif #vim.api.nvim_list_wins() <= 2 then
+	elseif nr_wins < 2 then
 		display_confirm = true
 		confirm_callback = function()
-			vim.cmd("q!")
+		  vim.cmd("q!")
 		end
 	else
 		vim.cmd("q!")
