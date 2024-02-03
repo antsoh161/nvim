@@ -13,7 +13,6 @@ M.lsp_servers = {
   "rust_analyzer",
   "dockerls",
   "cmake",
-  "dockerls",
 }
 
 return M

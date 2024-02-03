@@ -5,6 +5,6 @@ return {
     "--log=error",
     "--pretty",
     "--j=4",
-    -- "--header-insertion=never",
+    "--header-insertion=never",
   }
 }
