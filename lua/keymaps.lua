@@ -20,7 +20,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-
 -- Toggle hybrid relative line numbers
 -- :set nu for absolute
 keymap("n", "<leader>nn", ":set nu rnu!<CR>", opts)
@@ -85,7 +84,7 @@ keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
 
 -- toggleterm
 -- press 'a' to jump back to insert mode in terminal
-keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
+-- keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
 -- keymap("n", "<leader>tb", ":Toggle")
 
 -- scope / tabs
@@ -98,7 +97,7 @@ keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":silent! Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
+-- keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
 keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
 
@@ -142,13 +141,13 @@ end
 local function smart_quit()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-  local nr_wins = #vim.api.nvim_list_wins()
-  for _, win_id in ipairs(vim.api.nvim_list_wins()) do
-    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
-    if bufname:match("NvimTree_") then
-      nr_wins = nr_wins - 1 -- Don't count the tree as a window
-  end
-  end
+	local nr_wins = #vim.api.nvim_list_wins()
+	for _, win_id in ipairs(vim.api.nvim_list_wins()) do
+		local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
+		if bufname:match("NvimTree_") then
+			nr_wins = nr_wins - 1 -- Don't count the tree as a window
+		end
+	end
 
 	local display_confirm = false
 	local confirm_callback
@@ -160,7 +159,7 @@ local function smart_quit()
 	elseif nr_wins < 2 then
 		display_confirm = true
 		confirm_callback = function()
-		  vim.cmd("q!")
+			vim.cmd("q!")
 		end
 	else
 		vim.cmd("q!")
