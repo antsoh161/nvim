@@ -52,7 +52,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<leader>nh", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
@@ -101,11 +101,12 @@ keymap("n", "<leader>ft", ":silent! Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
 keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
 
--- Telescope Git
--- TODO: remove this prob
--- keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
--- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
--- keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
+-- Telescope/Git
+keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
+keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
+keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
+keymap("n", "<leader>G", ":Git<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
