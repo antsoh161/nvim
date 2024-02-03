@@ -1,167 +1,107 @@
-local M = {
-  "hrsh7th/nvim-cmp",
-  commit = "0b751f6beef40fd47375eaf53d3057e0bfa317e4",
-  dependencies = {
-    {
-      "hrsh7th/cmp-nvim-lsp",
-      commit = "44b16d11215dce86f253ce0c30949813c0a90765",
-    },
-    {
-      "hrsh7th/cmp-buffer",
-      commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa",
-    },
-    {
-      "hrsh7th/cmp-path",
-      commit = "91ff86cd9c29299a64f968ebb45846c485725f23",
-    },
-    {
-      "hrsh7th/cmp-cmdline",
-      commit = "8ee981b4a91f536f52add291594e89fb6645e451",
-    },
-    {
-      "saadparwaiz1/cmp_luasnip",
-      commit = "05a9ab28b53f71d1aece421ef32fee2cb857a843",
-    },
-    {
-      "L3MON4D3/LuaSnip",
-      commit = "cab667e2674881001a86a7478fff7dc7791c63f5",
-      event = "InsertEnter",
-      dependencies = {
-        "rafamadriz/friendly-snippets",
-        commit = "43727c2ff84240e55d4069ec3e6158d74cb534b6",
-      },
-    },
-    {
-      "hrsh7th/cmp-nvim-lua",
-      commit = "f12408bdb54c39c23e67cab726264c10db33ada8",
-    },
-  },
-  event = {
-    "InsertEnter",
-    "CmdlineEnter",
-  },
+return {
+	"hrsh7th/nvim-cmp",
+	event = { "BufReadPost", "BufNewFile" },
+	dependencies = {
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"windwp/nvim-autopairs",
+		"saadparwaiz1/cmp_luasnip",
+		"L3MON4D3/LuaSnip",
+		"rafamadriz/friendly-snippets",
+		"onsails/lspkind.nvim",
+	},
+
+	config = function()
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		local cmp = require("cmp")
+		local luasnip = require("luasnip")
+		local lspkind = require("lspkind")
+
+		require("nvim-autopairs").setup({
+			check_ts = true, -- treesitter integration
+			disable_filetype = { "TelescopePrompt" },
+			ts_config = {
+				lua = { "string", "source" },
+				javascript = { "string", "template_string" },
+				java = false,
+			},
+			fast_wrap = {
+				map = "<M-e>",
+				chars = { "{", "[", "(", '"', "'" },
+				pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+				offset = 0, -- Offset from pattern match
+				end_key = "$",
+				keys = "qwertyuiopzxcvbnmasdfghjkl",
+				check_comma = true,
+				highlight = "PmenuSel",
+				highlight_grey = "LineNr",
+			},
+		})
+
+		-- Integrate nvim-autopairs with cmp
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+		-- Load snippets
+		require("luasnip.loaders.from_vscode").lazy_load()
+
+		cmp.setup({
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-u>"] = cmp.mapping.scroll_docs(4),
+				["<C-d>"] = cmp.mapping.scroll_docs(-4),
+				["<C-Space>"] = cmp.mapping.complete({}),
+				["<C-c>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping.confirm({ select = true }), -- select suggestion
+			}),
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" }, -- lsp
+				{ name = "buffer", max_item_count = 5 }, -- text within current buffer
+				{ name = "copilot" }, -- Copilot suggestions
+				{ name = "path", max_item_count = 3 }, -- file system paths
+				{ name = "luasnip", max_item_count = 3 }, -- snippets
+			}),
+			formatting = {
+				expandable_indicator = true,
+				format = lspkind.cmp_format({
+					mode = "symbol_text",
+					maxwidth = 50,
+					ellipsis_char = "...",
+					symbol_map = {
+						Copilot = "",
+					},
+				}),
+			},
+		})
+	end,
 }
-function M.config()
-  local cmp = require("cmp")
-  local luasnip = require("luasnip")
-  require("luasnip/loaders/from_vscode").lazy_load()
-
-  local check_backspace = function()
-    local col = vim.fn.col(".") - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-  end
-
-  local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-  }
-
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body) -- For `luasnip` users.
-      end,
-    },
-
-    mapping = cmp.mapping.preset.insert({
-      ["<C-k>"] = cmp.mapping.select_prev_item(),
-      ["<C-j>"] = cmp.mapping.select_next_item(),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-e>"] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      -- ["<Tab>"] = cmp.mapping(function(fallback)
-      -- 	if cmp.visible() then
-      -- 		cmp.select_next_item()
-      -- 	elseif luasnip.expandable() then
-      -- 		luasnip.expand()
-      -- 	elseif luasnip.expand_or_jumpable() then
-      -- 		luasnip.expand_or_jump()
-      -- 	elseif check_backspace() then
-      -- 		fallback()
-      -- 	else
-      -- 		fallback()
-      -- 	end
-      -- end, {
-      -- 	"i",
-      -- 	"s",
-      -- }),
-      -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-      -- 	if cmp.visible() then
-      -- 		cmp.select_prev_item()
-      -- 	elseif luasnip.jumpable(-1) then
-      -- 		luasnip.jump(-1)
-      -- 	else
-      -- 		fallback()
-      -- 	end
-      -- end, {
-      -- 	"i",
-      -- 	"s",
-      -- }),
-    }),
-    formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        vim_item.kind = kind_icons[vim_item.kind]
-        vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[NVIM_LUA]",
-          luasnip = "[LUASNIP]",
-          buffer = "[BUFFER]",
-          path = "[PATH]",
-          emoji = "[EMOJI]",
-        })[entry.source.name]
-        return vim_item
-      end,
-    },
-    sources = {
-      { name = "nvim_lsp" },
-      { name = "nvim_lua" },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "path" },
-    },
-    confirm_opts = {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
-    },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
-    experimental = {
-      ghost_text = true,
-    },
-  })
-end
-
-return M
