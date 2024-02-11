@@ -15,10 +15,10 @@ vim.g.mapleader = " "
 
 -- Install every plugin in user/
 require("lazy").setup("user", {
-	install = { colorscheme = { require("user.colorscheme").name } }, -- Picks first in colorscheme list
+	install = { colorscheme = { "catppuccin-mocha" } },
 	default = { lazy = false },
 	ui = { wrap = "true" },
-	change_detection = { enabled = true },
+	change_detection = { enabled = false },
 	debug = false,
 	performance = {
 		rtp = {
