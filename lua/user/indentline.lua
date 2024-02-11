@@ -3,11 +3,6 @@ local M = {
 	event = "BufReadPre",
 	main = "ibl",
 }
-
-local highlight = {
-	"CursorColumn",
-	"Whitespace",
-}
 function M.config()
 	require("ibl").setup({
 		indent = { char = "▏" },
