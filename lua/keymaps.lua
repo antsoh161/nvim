@@ -32,7 +32,8 @@ keymap("n", "<leader>w", ":vsplit<CR>", opts)
 --keymap("n", "<leader>h", ":split<CR>", opts) who uses h-split anyway
 
 -- Save file
-keymap("n", "<leader>s", ":w<CR>", opts)
+keymap("n", "<leader>ss", ":w<CR>", opts)
+keymap("n", "<leader>sa", ":wa<CR>", opts)
 
 -- Up/Down faster
 keymap("n", "J", "5j<CR>", opts)
@@ -91,8 +92,8 @@ keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
 -- tabnext is toggle right, tabNext is toggle left (nice naming choice)
 -- keymap("n", "<leader>tt", ":tabnew<CR>", opts)
 -- keymap("n", "<leader>tc", ":tabclose<CR>", opts)
--- keymap("n", "<leader>tl", ":tabnext<CR>", opts)
--- keymap("n", "<leader>th", ":tabNext<CR>", opts)
+-- keymap("n", "<leader>tn", ":tabnext<CR>", opts)
+-- keymap("n", "<C-L>", ":tabNext<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
@@ -121,11 +122,28 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+keymap("n", "<leader>fd", ":Telescope dap configurations<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 keymap("x", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
+
+-- Launch
+-- keymap("n", "<leader>rt", ":LaunchTask<CR>", opts)
+-- keymap("n", "<leader>rd", ":LaunchDebugger<CR>", opts)
+-- keymap("n", "<leader>rc", ":LaunchOpenConfigFile<CR>", opts)
+
+-- Overseer
+keymap("n", "<leader>or", ":OverseerRun<CR>", opts)
+keymap("n", "<leader>ot", ":OverseerToggle<CR>", opts)
+keymap("n", "<leader>oc", ":OverseerClose<CR>", opts)
+keymap("n", "<leader>oo", ":OverseerOpen<CR>", opts)
+
+-- Noice
+keymap("n", "<leader>mm", ":Noice<CR>", opts)
+keymap("n", "<leader>ml", ":NoiceLast<CR>", opts)
+keymap("n", "<leader>mh", ":NoiceHistory<CR>", opts)
 
 -- Ask for qutting because i lost like 2 hours of work once
 local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
