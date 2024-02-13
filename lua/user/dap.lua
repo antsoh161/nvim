@@ -28,6 +28,12 @@ return {
          for _, cpp_config in ipairs(cpp_configs) do
             table.insert(dap.configurations.cpp, cpp_config)
          end
+
+         dap.configurations.python = {}
+         local python_configs = require("shared.dap_settings.python")
+         for _, python_config in ipairs(python_configs) do
+            table.insert(dap.configurations.python, python_config)
+         end
       end,
    },
    {
@@ -42,6 +48,7 @@ return {
 
       config = function()
          require("dapui").setup({
+            force_buffers = true,
             expand_lines = true,
             icons = { expanded = "", collapsed = "", circular = "" },
             mappings = {

@@ -1,7 +1,7 @@
 if vim.fn.has("win32") == 1 then
-   path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/Scripts/python"
+   Path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/Scripts/python"
 else
-   path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+   Path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
 end
 
 return {
@@ -41,7 +41,7 @@ return {
       else
          callback({
             type = "executable",
-            command = path,
+            command = Path,
             args = { "-m", "debugpy.adapter" },
             options = {
                source_filetype = "python",
