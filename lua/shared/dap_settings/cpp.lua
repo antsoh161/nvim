@@ -1,6 +1,6 @@
 return {
    {
-      name = "C++ Launch from path",
+      name = "C++ Launch from path (gdb)",
       type = "gdb",
       request = "launch",
       program = function()
@@ -10,7 +10,7 @@ return {
       cwd = "${workspaceFolder}",
    },
    {
-      name = "C++ Launch from path",
+      name = "C++ Launch from path (gdb)",
       type = "cppdbg",
       request = "launch",
       program = function()
