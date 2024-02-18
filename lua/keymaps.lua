@@ -104,7 +104,6 @@ keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
 
 -- Telescope/Git
 keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
-keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
 -- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
 keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
@@ -137,9 +136,6 @@ keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
 
 -- Overseer
 keymap("n", "<leader>or", ":OverseerRun<CR>", opts)
-keymap("n", "<leader>ot", ":OverseerToggle<CR>", opts)
-keymap("n", "<leader>oc", ":OverseerClose<CR>", opts)
-keymap("n", "<leader>oo", ":OverseerOpen<CR>", opts)
 keymap("n", "<leader>oo", ":OverseerToggle<CR>", opts)
 
 -- Noice
