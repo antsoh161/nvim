@@ -4,11 +4,11 @@ return {
 	cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
 	dependencies = {
 		{
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/cmp-nvim-lsp",
-			"nvimtools/none-ls.nvim",
-			"folke/neodev.nvim",
+			-- "williamboman/mason.nvim",
+			-- "williamboman/mason-lspconfig.nvim",
+			-- "hrsh7th/cmp-nvim-lsp",
+			-- "nvimtools/none-ls.nvim",
+			-- "folke/neodev.nvim",
 		},
 	},
 

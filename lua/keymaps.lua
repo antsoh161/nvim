@@ -143,6 +143,19 @@ keymap("n", "<leader>mm", ":Noice<CR>", opts)
 keymap("n", "<leader>ml", ":NoiceLast<CR>", opts)
 keymap("n", "<leader>mh", ":NoiceHistory<CR>", opts)
 
+local cmake_options = {
+   "configure preset",
+   "cmake",
+   "cmake build",
+}
+
+local cmake_picker = function()
+   local choice = vim.fn.input("cmake", choice)
+end
+
+keymap("n", "<leader>fc", cmake_picker, opts)
+
+
 -- Ask for qutting because i lost like 2 hours of work once
 local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
 local LAST_WINDOW_PROMPT = "This is the last window. Quit neovim? (y/n)"
