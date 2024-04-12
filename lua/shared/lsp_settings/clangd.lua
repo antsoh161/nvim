@@ -6,5 +6,6 @@ return {
     "--pretty",
     "--j=4",
     "--header-insertion=never",
+    "--malloc-trim"
   }
 }
