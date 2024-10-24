@@ -80,8 +80,11 @@ keymap("v", "<C-J>", ":m '>+1<CR>gv=gv", opts)
 
 -- NvimTree
 -- silent! because this clashes with highlighting on startup
-keymap("n", "<leader>ee", ":silent! NvimTreeToggle<CR>", opts)
-keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
+-- keymap("n", "<leader>ee", ":silent! NvimTreeToggle<CR>", opts)
+-- keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
+
+-- Oil
+keymap("n", "<leader>ee", ":Oil<CR>", opts)
 
 -- toggleterm
 -- press 'a' to jump back to insert mode in terminal
@@ -107,7 +110,7 @@ keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
 -- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
 keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
-keymap("n", "<leader>G", ":Git<CR>", opts)
+keymap("n", "<leader>GG", ":Git<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
