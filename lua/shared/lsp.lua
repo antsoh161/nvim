@@ -4,7 +4,7 @@ M.lsp_servers = {
    "lua_ls",
    "cssls",
    "html",
-   "tsserver",
+   "ts_ls",
    -- "pyright",
    "jedi_language_server",
    "bashls",

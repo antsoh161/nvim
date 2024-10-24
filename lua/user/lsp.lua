@@ -2,15 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
-	dependencies = {
-		{
-			-- "williamboman/mason.nvim",
-			-- "williamboman/mason-lspconfig.nvim",
-			-- "hrsh7th/cmp-nvim-lsp",
-			-- "nvimtools/none-ls.nvim",
-			-- "folke/neodev.nvim",
-		},
-	},
 
 	config = function()
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
