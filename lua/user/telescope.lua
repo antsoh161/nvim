@@ -12,6 +12,8 @@ return {
 	config = function()
 		local actions = require("telescope.actions")
 		local layout = require("telescope.actions.layout")
+		local trouble_open = require("trouble.sources.telescope").open
+		local trouble_add = require("trouble.sources.telescope").add
 		require("telescope").setup({
 			defaults = {
 				prompt_prefix = " ",
@@ -29,6 +31,12 @@ return {
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						["<C-p>"] = layout.toggle_preview,
+						["<C-t>"] = trouble_open,
+					},
+					n = {
+						["<C-t>"] = trouble_open,
+					},
 				},
 			},
 			extensions = {
