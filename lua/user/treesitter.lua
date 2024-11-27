@@ -6,6 +6,8 @@ return {
 		require("nvim-treesitter")
 		local configs = require("nvim-treesitter.configs")
 		configs.setup({
+         modules = {},
+         auto_install = false,
 			ensure_installed = {
 				"lua",
 				"markdown",
