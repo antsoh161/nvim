@@ -19,7 +19,7 @@ return {
             cmp = true,
             gitsigns = true,
             harpoon = false, -- Try out
-            illuminate = true,
+            illuminate = false,
             indent_blanklune = {
                enabled = false,
                scope_color = "sapphire",
