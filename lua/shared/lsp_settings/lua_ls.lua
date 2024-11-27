@@ -1,21 +1,23 @@
 return {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
-        },
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-    hint = {
-      enable = true,
-    },
-  },
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				},
+				maxPreload = 100000,
+				preloadFileSize = 10000,
+			},
+			telemetry = {
+				enable = false,
+			},
+			hint = {
+				enable = true,
+			},
+		},
+	},
 }
