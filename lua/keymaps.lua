@@ -100,7 +100,7 @@ keymap("n", "<leader>ee", ":Oil<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":silent! Telescope live_grep<CR>", opts)
+keymap("n", "<leader>ft", ":silent! Telescope live_grep_args<CR>", opts)
 -- keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
 keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
@@ -146,63 +146,6 @@ keymap("n", "<leader>mm", ":Noice<CR>", opts)
 keymap("n", "<leader>ml", ":NoiceLast<CR>", opts)
 keymap("n", "<leader>mh", ":NoiceHistory<CR>", opts)
 
-local cmake_options = {
-   "configure preset",
-   "cmake",
-   "cmake build",
-}
+keymap("n", "<C-q>", ":ConfirmQuit<CR>", opts)
+keymap("n", "<C-Q>", ":ConfirmQuitAll<CR>", opts)
 
-local cmake_picker = function()
-   local choice = vim.fn.input("cmake", choice)
-end
-
-keymap("n", "<leader>fc", cmake_picker, opts)
-
-
--- Ask for qutting because i lost like 2 hours of work once
-local UNSAVED_CHANGES_PROMPT = "You have unsaved changes. Quit anyway? (y/n)"
-local LAST_WINDOW_PROMPT = "This is the last window. Quit neovim? (y/n)"
-
-local function display_prompt(prompt, callback)
-	vim.ui.input({ prompt = prompt }, function(input)
-		if input == "y" or input == "Y" then
-			callback()
-		end
-	end)
-end
-
-local function smart_quit()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-	local nr_wins = #vim.api.nvim_list_wins()
-	for _, win_id in ipairs(vim.api.nvim_list_wins()) do
-		local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
-		if bufname:match("NvimTree_") then
-			nr_wins = nr_wins - 1 -- Don't count the tree as a window
-		end
-	end
-
-	local display_confirm = false
-	local confirm_callback
-	if modified then
-		display_confirm = true
-		confirm_callback = function()
-			vim.cmd("q!")
-		end
-	elseif nr_wins < 2 then
-		display_confirm = true
-		confirm_callback = function()
-			vim.cmd("q!")
-		end
-	else
-		vim.cmd("q!")
-	end
-	if display_confirm then
-		if modified then
-			display_prompt(UNSAVED_CHANGES_PROMPT, confirm_callback)
-		else
-			display_prompt(LAST_WINDOW_PROMPT, confirm_callback)
-		end
-	end
-end
-keymap("n", "<C-q>", smart_quit, opts)
