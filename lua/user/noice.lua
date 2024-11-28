@@ -62,9 +62,4 @@ return {
       event = "LspAttach",
       opts = {},
    }, -- LSP progress
-   {
-      "yutkat/confirm-quit.nvim",
-      event = "CmdlineEnter",
-      opts = {},
-   }
 }

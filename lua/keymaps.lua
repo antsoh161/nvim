@@ -146,6 +146,6 @@ keymap("n", "<leader>mm", ":Noice<CR>", opts)
 keymap("n", "<leader>ml", ":NoiceLast<CR>", opts)
 keymap("n", "<leader>mh", ":NoiceHistory<CR>", opts)
 
-keymap("n", "<C-q>", ":ConfirmQuit<CR>", opts)
-keymap("n", "<C-Q>", ":ConfirmQuitAll<CR>", opts)
+keymap("n", "<C-q>", ":SmartQuit<CR>", opts)
+keymap("n", "<C-Q>", ":SmartQuit<CR>", opts)
 

@@ -42,6 +42,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		vim.lsp.codelens.refresh()
 	end,
 })
+vim.api.nvim_create_user_command('SmartQuit', function()
+    local wins = vim.api.nvim_list_wins()
+    if #wins > 1 then
+        vim.cmd('quit')  -- Close the current window
+    else
+        vim.api.nvim_out_write("You cannot close the last window. Use ':qa' to quit Neovim.\n")
+    end
+end, {})
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
 -- 	callback = function()
