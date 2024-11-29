@@ -8,7 +8,6 @@ return {
 	      "neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 			"nvimtools/none-ls.nvim",
-			"folke/neodev.nvim",
       },
    },
    config = function()

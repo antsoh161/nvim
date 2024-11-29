@@ -22,7 +22,7 @@ require("lazy").setup("user", {
 	debug = false,
 	performance = {
 		rtp = {
-			disabled_plugins = { "netrwPlugin" },
+			disabled_plugins = { "netrwPlugin", "gzip", "tohtml", "tutor", "zipPlugin" },
 		},
 	},
 })
