@@ -2,6 +2,7 @@ return {
    "williamboman/mason.nvim",
    cmd = "Mason",
    event = "BufReadPre",
+   build = ":MasonUpdate",
    dependencies = {
       {
          "williamboman/mason-lspconfig.nvim",
@@ -12,7 +13,6 @@ return {
    },
    config = function()
       require("mason").setup({
-
          ui = {
             border = "none",
             icons = {
@@ -25,7 +25,7 @@ return {
          max_concurrent_installers = 4,
       })
       require("mason-lspconfig").setup({
-         ensure_installed = require("shared.lsp").lsp_servers,
+         ensure_installed = require("config.lsp").lsp_servers,
          automatic_installation = true,
       })
    end,

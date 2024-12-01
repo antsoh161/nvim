@@ -21,16 +21,16 @@ return {
 			end
 
 			require("dap.ext.vscode").load_launchjs(nil)
-			dap.adapters = require("shared.dap_settings.adapters") -- Add adapters into this table as needed
+			dap.adapters = require("config.dap_settings.adapters") -- Add adapters into this table as needed
 
 			dap.configurations.cpp = {}
-			local cpp_configs = require("shared.dap_settings.cpp")
+			local cpp_configs = require("config.dap_settings.cpp")
 			for _, cpp_config in ipairs(cpp_configs) do
 				table.insert(dap.configurations.cpp, cpp_config)
 			end
 
 			dap.configurations.python = {}
-			local python_configs = require("shared.dap_settings.python")
+			local python_configs = require("config.dap_settings.python")
 			for _, python_config in ipairs(python_configs) do
 				table.insert(dap.configurations.python, python_config)
 			end
