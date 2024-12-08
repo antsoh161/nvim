@@ -68,7 +68,7 @@ return {
 			local lsp_opts = {
 				on_attach = on_attach,
 				capabilities = capabilities,
-			on_init = on_init,
+		   	on_init = on_init,
 			}
 
 			server = vim.split(server, "@")[1]

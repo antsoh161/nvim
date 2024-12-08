@@ -16,6 +16,7 @@ return {
       name = "catppuccin",
       config = function()
          require("catppuccin").setup({
+            alpha = true,
             cmp = true,
             gitsigns = true,
             harpoon = false, -- Try out
@@ -28,7 +29,7 @@ return {
             mason = true,
             native_lsp = { enabled = true },
             notify = false,
-            nvimtree = true,
+            nvimtree = false,
             neotree = false, -- ?
             symbols_outline = false, -- ?
             telescope = true,
