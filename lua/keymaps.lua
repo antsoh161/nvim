@@ -136,7 +136,7 @@ M.global_keymaps = function()
 
 	-- Lsp
 	keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-	keymap("x", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+	keymap({ "v", "x" }, "<leader>lf", vim.lsp.buf.format, opts)
 	keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
 
 	-- Overseer
@@ -150,6 +150,13 @@ M.global_keymaps = function()
 
 	keymap("n", "<C-q>", ":SmartQuit<CR>", opts)
 	keymap("n", "<C-Q>", ":SmartQuit<CR>", opts)
+
+	-- Ai
+	keymap({ "n", "v", "x" }, "<leader>aa", ":CopilotChatToggle<CR>", opts)
+	keymap({ "n", "v", "x" }, "<leader>ax", ":CopilotChatReset<CR>", opts)
+	keymap({ "n", "v", "x" }, "<leader>ac", ":CopilotChatCommitStaged<CR>", opts)
+	keymap({ "v", "x" }, "<leader>af", ":CopilotChatFix<CR>", opts)
+	keymap({ "v", "x" }, "<leader>ae", ":CopilotChatExplain<CR>", opts)
 end
 
 M.lsp_keymaps = function(client, bufnr)
@@ -200,8 +207,7 @@ M.lsp_keymaps = function(client, bufnr)
 	keymap("n", "gd", vim.lsp.buf.definition, opts(bufnr, "Go to definition"))
 	keymap("n", "<C-Space>", vim.lsp.buf.hover, opts(bufnr, "Hover"))
 	keymap("n", "gI", vim.lsp.buf.implementation, opts(bufnr, "Go to implementation"))
-	-- keymap("n", "gr", function() vim.lsp.buf.references() end, opts(bufnr, "Go to references"))
-	keymap("n", "gr", function() vim.lsp.buf.references() end, {desc = "Bla"})
+keymap("n", "gr", function() vim.lsp.buf.references() end, opts(bufnr, "Go to references"))
 	keymap("n", "gl", vim.diagnostic.open_float, opts(bufnr, "Open diagnostic"))
 	keymap("n", "<leader>la", vim.lsp.buf.code_action, opts(bufnr, "Do code action"))
 	keymap("n", "<leader>lr", vim.lsp.buf.rename, opts(bufnr, "Rename"))
