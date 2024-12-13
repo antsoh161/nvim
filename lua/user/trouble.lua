@@ -34,6 +34,15 @@ return {
 	},
 	opts = {
 		focus = true,
-      auto_refresh = false,
+		auto_refresh = true,
+		auto_preview = true,
+		modes = {
+			symbols = {
+				win = { position = "bottom", size = { width = 0.3, height = 0.3 } },
+			},
+			diagnostics = {
+				win = { position = "bottom", size = { width = 0.3, height = 0.3 } },
+			},
+		},
 	}, -- for default options, refer to the configuration section for custom setup.
 }

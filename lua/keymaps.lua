@@ -39,7 +39,7 @@ M.global_keymaps = function()
 	--keymap("n", "<leader>h", ":split<CR>", opts) who uses h-split anyway
 
 	-- Save file
-	keymap("n", "<leader>ss", ":w<CR>", opts)
+	keymap("n", "<leader>ss", ":silent w<CR>", opts)
 	keymap("n", "<leader>sa", ":wa<CR>", opts)
 
 	-- Up/Down faster

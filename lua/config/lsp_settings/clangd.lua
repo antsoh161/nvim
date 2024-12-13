@@ -1,4 +1,4 @@
-local clangd_cmd = vim.fn.expand("~/.local/share/nvim/mason/packages/clangd/clangd_19.1.0/bin/clangd")
+local clangd_cmd = vim.fn.glob("~/.local/share/nvim/mason/packages/clangd/*/bin/clangd")
 return {
 	cmd = {
 		clangd_cmd,
