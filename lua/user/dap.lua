@@ -113,9 +113,9 @@ return {
 			require("telescope").load_extension("dap")
 		end,
 	},
-	{
-		"rcarriga/cmp-dap",
-		event = "VeryLazy",
-		config = function() end,
-	},
+	-- {
+	-- 	"rcarriga/cmp-dap",
+	-- 	event = "VeryLazy",
+	-- 	config = function() end,
+	-- },
 }

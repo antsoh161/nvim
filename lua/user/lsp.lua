@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+   dependencies = { "saghen/blink.cmp" },
 	event = "BufReadPre",
 	cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
 	opts = { inlay_hints = true },
@@ -22,7 +23,7 @@ return {
 			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 		end
 
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		-- local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local my_capabilities = {
 			capabilities = {
@@ -40,7 +41,8 @@ return {
 			"force",
 			{},
 			vim.lsp.protocol.make_client_capabilities(),
-			cmp_nvim_lsp.default_capabilities(),
+			-- cmp_nvim_lsp.default_capabilities(),
+         require("blink.cmp").get_lsp_capabilities(),
 			my_capabilities
 		)
 
