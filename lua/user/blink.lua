@@ -49,18 +49,18 @@ return {
          sources = {
             default = { "lsp", "path", "snippets", "buffer" },
             -- Please see https://github.com/Saghen/blink.compat for using `nvim-cmp` sources
-            providers = {
-               lsp = {
-                  name = "LSP",
-                  module = "blink.cmp.sources.lsp",
-                  score_offset = 5,
-               },
+            -- providers = {
+            --    lsp = {
+            --       name = "LSP",
+            --       module = "blink.cmp.sources.lsp",
+            --       score_offset = 5,
+            --    },
                -- copilot = {
                --    name = "copilot",
                --    module = "blink-cmp-copilot",
                --    kind = "Copilot",
                -- },
-            },
+            -- },
             cmdline = {},
          },
 
