@@ -157,6 +157,7 @@ M.global_keymaps = function()
 	keymap({ "n", "v", "x" }, "<leader>ac", ":CopilotChatCommitStaged<CR>", opts)
 	keymap({ "v", "x" }, "<leader>af", ":CopilotChatFix<CR>", opts)
 	keymap({ "v", "x" }, "<leader>ae", ":CopilotChatExplain<CR>", opts)
+	keymap({ "v", "x" }, "<leader>ao", ":CopilotChatOptimize<CR>", opts)
 end
 
 M.lsp_keymaps = function(client, bufnr)
