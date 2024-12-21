@@ -61,6 +61,7 @@ return {
                --    kind = "Copilot",
                -- },
             },
+            cmdline = {},
          },
 
          appearance = {
