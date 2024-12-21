@@ -35,7 +35,7 @@ return {
                border = "rounded",
                draw = {
                   columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-                  treesitter = true,
+                  treesitter = { "lsp" },
                },
             },
             documentation = {
@@ -47,15 +47,13 @@ return {
             },
          },
          sources = {
-            completion = {
-               enabled_providers = { "lsp", "path", "snippets", "buffer" },
-            },
+            default = { "lsp", "path", "snippets", "buffer" },
             -- Please see https://github.com/Saghen/blink.compat for using `nvim-cmp` sources
             providers = {
                lsp = {
                   name = "LSP",
                   module = "blink.cmp.sources.lsp",
-                  score_offset = 5;
+                  score_offset = 5,
                },
                -- copilot = {
                --    name = "copilot",
