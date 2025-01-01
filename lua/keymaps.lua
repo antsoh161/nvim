@@ -8,14 +8,15 @@ M.global_keymaps = function()
 	keymap("", "<Space>", "<Nop>", opts)
 	vim.g.mapleader = " "
 
-   -- Took me 3 hours to find this mega-griefing 
+   -- Took 3 hours to find this mega-griefing 
 	vim.keymap.del("n", "grr", opts)
 	vim.keymap.del("n", "gra", opts)
 	vim.keymap.del("n", "grn", opts)
 	vim.keymap.del("n", "gri", opts)
 
 	-- Modes
-	--   normal_mode = "n", insert_mode = "i",
+	--   normal_mode = "n",
+   --   insert_mode = "i",
 	--   visual_mode = "v",
 	--   visual_block_mode = "x",
 	--   term_mode = "t",
@@ -83,40 +84,33 @@ M.global_keymaps = function()
 	keymap("v", "<C-K>", ":m '<-2<CR>gv=gv", opts)
 	keymap("v", "<C-J>", ":m '>+1<CR>gv=gv", opts)
 
-	-- Plugins --
-
-	-- NvimTree
-	-- silent! because this clashes with highlighting on startup
-	-- keymap("n", "<leader>ee", ":silent! NvimTreeToggle<CR>", opts)
-	-- keymap("n", "<leader>ef", ":NvimTreeFocus<CR>", opts)
-
 	-- Oil
 	keymap("n", "<leader>ee", ":Oil<CR>", opts)
 
-	-- toggleterm
-	-- press 'a' to jump back to insert mode in terminal
-	-- keymap("n", "<leader>tf", ":ToggleTerm<CR>", opts)
-	-- keymap("n", "<leader>tb", ":Toggle")
-
-	-- scope / tabs
-	-- tabnext is toggle right, tabNext is toggle left (nice naming choice)
-	-- keymap("n", "<leader>tt", ":tabnew<CR>", opts)
-	-- keymap("n", "<leader>tc", ":tabclose<CR>", opts)
-	-- keymap("n", "<leader>tn", ":tabnext<CR>", opts)
-	-- keymap("n", "<C-L>", ":tabNext<CR>", opts)
-
 	-- Telescope
-	keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
-	keymap("n", "<leader>ft", ":silent! Telescope live_grep_args<CR>", opts)
+	-- keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
+	-- keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
+	-- keymap("n", "<leader>ft", ":silent! Telescope live_grep_args<CR>", opts)
 	-- keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
-	keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
-	keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
+	-- keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
+	-- keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
 
 	-- Telescope/Git
-	keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
+	-- keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
 	-- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
-	keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
-	keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
+	-- keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
+	-- keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
+   --
+   --
+   keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
+   keymap("n", "<leader>ft", ":FzfLua live_grep<CR>", opts)
+   keymap("n", "<leader>fb", ":FzfLua buffers<CR>", opts)
+   keymap("n", "<leader>fr", ":FzfLua oldfiles<CR>", opts)
+
+   keymap("n", "<leader>fx", ":FzfLua git_status<CR>", opts)
+   keymap("n", "<leader>fc", ":FzfLua git_commits<CR>", opts)
+   keymap("n", "<leader>fv", ":FzfLua git_branches<CR>", opts)
+   keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
 	keymap("n", "<leader>GG", ":Git<CR>", opts)
 
 	-- Comment
@@ -132,7 +126,6 @@ M.global_keymaps = function()
 	keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 	keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 	keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
-	keymap("n", "<leader>fd", ":Telescope dap configurations<cr>", opts)
 
 	-- Lsp
 	keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)

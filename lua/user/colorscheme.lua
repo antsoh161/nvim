@@ -38,7 +38,7 @@ return {
 					overseer = true,
 					lsp_trouble = true,
 					symbols_outline = false, -- ?
-					telescope = true,
+					telescope = false,
 					treesitter = true,
 					treesitter_context = true,
 					which_key = true,
