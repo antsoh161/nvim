@@ -111,6 +111,7 @@ M.global_keymaps = function()
    keymap("n", "<leader>fc", ":FzfLua git_commits<CR>", opts)
    keymap("n", "<leader>fv", ":FzfLua git_branches<CR>", opts)
    keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
+   keymap("n", "<leader>fw", ":FzfLua resume<CR>", opts)
 	keymap("n", "<leader>GG", ":Git<CR>", opts)
 
 	-- Comment
@@ -212,6 +213,10 @@ keymap("n", "gr", function() vim.lsp.buf.references() end, opts(bufnr, "Go to re
 	keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.jump({ count = -1 })<CR>", opts(bufnr, "Jump to prev"))
 	keymap("n", "<leader>lt", toggle_hints, opts(bufnr, "Toggle inlay hints"))
 	keymap("n", "<leader>lc", toggle_codelens, opts(bufnr, "Toggle inlay hints"))
+
+   -- Fzf
+   -- keymap("n", "gR", "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>", opts(bufnr, "Fzf references"))
+   -- keymap( "gD", "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>")
 end
 
 return M

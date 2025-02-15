@@ -21,6 +21,7 @@ return {
 					blink_cmp = true,
 					cmp = false,
 					gitsigns = true,
+               fzf = true,
 					fidget = true,
 					harpoon = true, -- Try out
 					illuminate = false,
