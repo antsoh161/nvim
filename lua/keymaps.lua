@@ -113,6 +113,7 @@ M.global_keymaps = function()
   keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
   keymap("n", "<leader>fw", ":FzfLua resume<CR>", opts)
   keymap("n", "<leader>GG", ":Git<CR>", opts)
+  keymap("n", "<leader>Gd", ":DiffviewOpen<CR>", opts)
 
   -- Comment
   keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
