@@ -14,6 +14,7 @@ M.lsp_servers = {
   "rust_analyzer",
   "dockerls",
   "cmake",
+  "bzl",
 }
 
 M._supports_method = {}
