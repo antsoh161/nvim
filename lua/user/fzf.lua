@@ -15,11 +15,6 @@ return {
     end
 
     return {
-      keymap = {
-        builtin = {
-          ["ctrl-p"] = "toggle-preview",
-        },
-      },
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
@@ -43,6 +38,12 @@ return {
         col = 0.5,
         preview = {
           scrollchars = { "┃", "" },
+        },
+      },
+      keymap = {
+        builtin = {
+          true,
+          ["ctrl-p"] = "toggle-preview",
         },
       },
       files = {
