@@ -1,26 +1,26 @@
 return {
-	"folke/snacks.nvim",
-	priority = 1000,
-	lazy = false,
-	opts = {
-		bigfile = { enabled = true },
-		statuscolumn = { enabled = true },
-		notifier = {
-			enabled = true,
-			style = "compact",
-		},
-		indent = {
-			enabled = true,
-			animate = {
-				enabled = false,
-			},
-		},
-		dashboard = {
-			width = 140,
-			row = 10,
-			preset = {
-				keys = {},
-				header = [[
+  "folke/snacks.nvim",
+  priority = 1000,
+  lazy = false,
+  opts = {
+    bigfile = { enabled = true },
+    statuscolumn = { enabled = true },
+    notifier = {
+      enabled = true,
+      style = "compact",
+    },
+    indent = {
+      enabled = true,
+      animate = {
+        enabled = false,
+      },
+    },
+    dashboard = {
+      width = 140,
+      row = 10,
+      preset = {
+        keys = {},
+        header = [[
   ____               _  _  _         __     __ ___  __  __
  / ___|  ___   _ __ (_)| || |  __ _  \ \   / /|_ _||  \/  |
 | |  _  / _ \ | '__|| || || | / _` |  \ \ / /  | | | |\/| |
@@ -44,7 +44,7 @@ return {
         ██████████████████████████▓▓▒▒▒▒▒▒▒▒▒▒
       ██▒▒██▓▓▓▓██████████████▓▓▓▓▒▒▓▓▒▒▒▒▒▒▓▓
     ██▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒██▓▓]],
-			},
-		},
-	},
+      },
+    },
+  },
 }

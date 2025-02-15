@@ -1,54 +1,54 @@
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
-	callback = function()
-		vim.cmd([[
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
+  callback = function()
+    vim.cmd([[
       nnoremap <silent> <buffer> q :close<CR> 
       set nobuflisted 
     ]])
-	end,
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "gitcommit", "markdown" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
 })
 
 vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-	callback = function()
-		vim.cmd("tabdo wincmd =")
-	end,
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
-	callback = function()
-		vim.cmd("quit")
-	end,
+  callback = function()
+    vim.cmd("quit")
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
-	end,
+  callback = function()
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.java" },
-	callback = function()
-		vim.lsp.codelens.refresh()
-	end,
+  pattern = { "*.java" },
+  callback = function()
+    vim.lsp.codelens.refresh()
+  end,
 })
-vim.api.nvim_create_user_command('SmartQuit', function()
-    local wins = vim.api.nvim_list_wins()
-    if #wins > 1 then
-        vim.cmd('quit')  -- Close the current window
-    else
-        vim.api.nvim_out_write("You cannot close the last window. Use ':qa' to quit Neovim.\n")
-    end
+vim.api.nvim_create_user_command("SmartQuit", function()
+  local wins = vim.api.nvim_list_wins()
+  if #wins > 1 then
+    vim.cmd("quit") -- Close the current window
+  else
+    vim.api.nvim_out_write("You cannot close the last window. Use ':qa' to quit Neovim.\n")
+  end
 end, {})
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -65,4 +65,3 @@ end, {})
 -- 		end
 -- 	end,
 -- })
-

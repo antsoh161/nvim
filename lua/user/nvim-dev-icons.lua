@@ -5,8 +5,7 @@ local M = {
 }
 
 function M.config()
-  require("nvim-web-devicons").setup {
-  }
+  require("nvim-web-devicons").setup({})
 end
 
 return M
