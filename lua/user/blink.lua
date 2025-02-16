@@ -73,7 +73,10 @@ return {
             score_offset = 100,
           },
         },
-        cmdline = {},
+        -- cmdline = {},
+      },
+      cmdline = {
+        sources = {},
       },
 
       appearance = {
