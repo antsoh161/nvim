@@ -1,4 +1,4 @@
-local bash_cmd = vim.fn.glob("~/.local/share/nvim/mason/bash-language-server")
+local bash_cmd = vim.fn.glob("~/.local/share/nvim/mason/bin/bash-language-server")
 return {
   cmd = {
     bash_cmd,

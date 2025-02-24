@@ -6,7 +6,7 @@ M.lsp_servers = {
   "html",
   "ts_ls",
   -- "pyright",
-  "jedi_language_server",
+  -- "jedi_language_server",
   "bashls",
   "jsonls",
   "yamlls",
@@ -15,6 +15,7 @@ M.lsp_servers = {
   "dockerls",
   "cmake",
   "bzl",
+  "ruff",
 }
 
 M._supports_method = {}

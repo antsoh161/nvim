@@ -1,4 +1,4 @@
-local bzl_cmd = vim.fn.glob("~/.local/share/nvim/mason/bzl")
+local bzl_cmd = vim.fn.glob("~/.local/share/nvim/mason/bin/bzl")
 return {
   default_config = {
     cmd = { bzl_cmd, "lsp", "serve" },

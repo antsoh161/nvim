@@ -1,5 +1,6 @@
+local cmake_cmd = vim.fn.glob("~/.local/share/nvim/mason/bin/cmake-language-server")
 return {
-  cmd = { "cmake-language-server" },
+  cmd = { cmake_cmd },
   filetypes = { "cmake" },
   init_options = {
     buildDirectory = "build",
