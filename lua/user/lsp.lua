@@ -75,7 +75,7 @@ return {
 
       server = vim.split(server, "@")[1]
 
-      local require_ok, conf_opts = pcall(require, "shared.lsp_settings." .. server)
+      local require_ok, conf_opts = pcall(require, "config.lsp_settings." .. server)
       if require_ok then
         lsp_opts = vim.tbl_deep_extend("error", conf_opts, lsp_opts)
       end
