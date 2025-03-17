@@ -6,7 +6,7 @@ return {
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
-      require("dap.ext.vscode").json_decode = require("overseer.json").decode
+      -- require("dap.ext.vscode").json_decode = require("overseer.json").decode
 
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()

@@ -4,14 +4,14 @@ return {
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "InsertEnter",
-    config = function(opts)
+    config = function()
       require("copilot").setup({
         panel = {
           enabled = false,
         },
         suggestion = {
-          enabled = true,
-          auto_trigger = true,
+          enabled = false,
+          auto_trigger = false,
           hide_during_completion = true,
           keymap = {
             accept = "<C-a>",
