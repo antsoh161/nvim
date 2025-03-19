@@ -36,8 +36,8 @@ return {
         },
         trigger = {
           show_in_snippet = false,
-          show_on_keyword = false,
-          show_on_trigger_character = false,
+          -- show_on_keyword = false,
+          -- show_on_trigger_character = false,
         },
         accept = {
           auto_brackets = {
