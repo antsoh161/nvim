@@ -102,16 +102,17 @@ M.global_keymaps = function()
   -- keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
   --
   --
-  keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
-  keymap("n", "<leader>ft", ":FzfLua live_grep<CR>", opts)
-  keymap("n", "<leader>fb", ":FzfLua buffers<CR>", opts)
-  keymap("n", "<leader>fr", ":FzfLua oldfiles<CR>", opts)
-
-  keymap("n", "<leader>fx", ":FzfLua git_status<CR>", opts)
-  keymap("n", "<leader>fc", ":FzfLua git_commits<CR>", opts)
-  keymap("n", "<leader>fv", ":FzfLua git_branches<CR>", opts)
-  keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
-  keymap("n", "<leader>fw", ":FzfLua resume<CR>", opts)
+  -- Done in fzf.lua
+  -- keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
+  -- keymap("n", "<leader>ft", ":FzfLua live_grep<CR>", opts)
+  -- keymap("n", "<leader>fb", ":FzfLua buffers<CR>", opts)
+  -- keymap("n", "<leader>fr", ":FzfLua oldfiles<CR>", opts)
+  --
+  -- keymap("n", "<leader>fx", ":FzfLua git_status<CR>", opts)
+  -- keymap("n", "<leader>fc", ":FzfLua git_commits<CR>", opts)
+  -- keymap("n", "<leader>fv", ":FzfLua git_branches<CR>", opts)
+  -- keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
+  -- keymap("n", "<leader>fw", ":FzfLua resume<CR>", opts)
   keymap("n", "<leader>GG", ":Git<CR>", opts)
   keymap("n", "<leader>Gd", ":DiffviewOpen<CR>", opts)
 
