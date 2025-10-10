@@ -5,8 +5,6 @@ M.lsp_servers = {
   "cssls",
   "html",
   "ts_ls",
-  -- "pyright",
-  -- "jedi_language_server",
   "bashls",
   "jsonls",
   "yamlls",
