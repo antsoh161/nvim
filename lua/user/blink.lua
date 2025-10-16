@@ -17,7 +17,7 @@ return {
     -- },
     lazy = false,
     event = "InsertEnter",
-    version = "v0.*",
+      -- version = "v0.*",
     opts = {
       keymap = {
         preset = "default",
