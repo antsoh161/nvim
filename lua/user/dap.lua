@@ -20,7 +20,6 @@ return {
         dapui.close()
       end
 
-      require("dap.ext.vscode").load_launchjs(nil)
       dap.adapters = require("config.dap_settings.adapters") -- Add adapters into this table as needed
 
       dap.configurations.cpp = {}

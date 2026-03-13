@@ -12,8 +12,9 @@ M.lsp_servers = {
   "rust_analyzer",
   "dockerls",
   "cmake",
-  "bzl",
   "ruff",
+  "systemd_lsp",
+  "basedpyright",
 }
 
 local function can_merge(v)
