@@ -2,11 +2,10 @@ return {
 
   {
     "folke/tokyonight.nvim",
-    lazy = false,
+    lazy = true,
+    event = "VeryLazy",
     name = "tokyonight-night",
-    config = function()
-      -- vim.cmd.colorscheme("tokyonight-night")
-    end,
+    config = function() end,
   },
   {
     "catppuccin/nvim",
@@ -75,25 +74,21 @@ return {
   {
     "olimorris/onedarkpro.nvim",
     name = "onedarkpro",
-    priority = 1000, -- Load first
-    lazy = false,
-    -- event = "VeryLazy",
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("onedarkpro").setup({
         colors = {
           red = "require('onedarkpro.helpers').lighten('red', 5, 'onedark_dark')",
         },
       })
-      -- vim.cmd.colorscheme("onedark_dark")
     end,
   },
   {
     "nyoom-engineering/oxocarbon.nvim",
     name = "oxocarbon",
-    priority = 1000, -- Load first
-    lazy = false,
-    config = function()
-      -- vim.cmd.colorscheme("oxocarbon")
-    end,
+    lazy = true,
+    event = "VeryLazy",
+    config = function() end,
   },
 }
