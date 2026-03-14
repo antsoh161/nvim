@@ -1,19 +1,14 @@
 local M = {
   "akinsho/bufferline.nvim",
   event = "VimEnter",
-  dependencies = {
-    {
-      "famiu/bufdelete.nvim",
-    },
-  },
 }
 function M.config()
   require("bufferline").setup({
     options = {
-      close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-      right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+      close_command = function(n) Snacks.bufdelete(n) end,
+      right_mouse_command = function(n) Snacks.bufdelete(n) end,
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-      separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
+      separator_style = "thick",
     },
 
     highlights = {
