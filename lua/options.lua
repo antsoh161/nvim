@@ -15,7 +15,7 @@ vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false -- creates a swapfile
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
+-- termguicolors defaults to true in nvim 0.10+ when terminal supports it
 vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 300 -- faster completion (4000ms default)
@@ -38,7 +38,7 @@ vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {d
 vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.iskeyword:append("-") -- treats words with `-` as single words
-vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
+-- formatoptions:remove here gets overridden by ftplugins; handled in autocommands.lua instead
 vim.opt.linebreak = true
 vim.opt.confirm = true
 vim.opt.background = "dark"

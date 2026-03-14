@@ -18,7 +18,7 @@ M.lsp_servers = {
 }
 
 local function can_merge(v)
-  return type(v) == "table" and (vim.tbl_isempty(v) or not M.is_list(v))
+  return type(v) == "table" and (next(v) == nil or not vim.islist(v))
 end
 
 function M.merge(...)

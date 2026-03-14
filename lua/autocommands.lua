@@ -16,8 +16,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
-
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd("tabdo wincmd =")
@@ -32,7 +30,7 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+    vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
   end,
 })
 
@@ -40,6 +38,12 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*.java" },
   callback = function()
     vim.lsp.codelens.refresh()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
 })
 vim.api.nvim_create_user_command("SmartQuit", function()
@@ -50,18 +54,3 @@ vim.api.nvim_create_user_command("SmartQuit", function()
     vim.api.nvim_out_write("You cannot close the last window. Use ':qa' to quit Neovim.\n")
   end
 end, {})
-
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
--- 	callback = function()
--- 		vim.cmd("hi link illuminatedWord LspReferenceText")
--- 	end,
--- })
-
--- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
--- 	callback = function()
--- 	local line_count = vim.api.nvim_buf_line_count(0)
--- 		if line_count >= 3000 then
--- 			vim.cmd("IlluminatePauseBuf")
--- 		end
--- 	end,
--- })

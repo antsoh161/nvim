@@ -189,7 +189,7 @@ return {
       end
 
       -- get all the servers that are available through mason-lspconfig
-      local have_mason = ("mason-lspconfig.nvim") ~= nil
+      local have_mason, _ = pcall(require, "mason-lspconfig")
       local mason_all = have_mason
           and vim.tbl_keys(require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package)
         or {} --[[ @as string[] ]]
