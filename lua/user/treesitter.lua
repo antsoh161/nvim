@@ -1,6 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "BufReadPost",
+  build = ":TSUpdate",
 
   config = function()
     require("nvim-treesitter")
@@ -21,18 +22,11 @@ return {
         "yaml",
         "toml",
       },
-      -- ensure_installed = "all", -- one of "all" or a list of languages
       ignore_install = { "" },
-      sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+      sync_install = false,
       highlight = {
         enable = true,
         disable = { "css" },
-      },
-      autopairs = {
-        enable = true,
-      },
-      autotag = {
-        enable = true,
       },
       indent = { enable = true, disable = { "css" } },
     })
