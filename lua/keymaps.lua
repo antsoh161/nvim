@@ -8,11 +8,10 @@ M.global_keymaps = function()
   keymap("", "<Space>", "<Nop>", opts)
   vim.g.mapleader = " "
 
-  -- Took 3 hours to find this mega-griefing
-  vim.keymap.del("n", "grr", opts)
-  vim.keymap.del("n", "gra", opts)
-  vim.keymap.del("n", "grn", opts)
-  vim.keymap.del("n", "gri", opts)
+  vim.keymap.del("n", "grr")
+  vim.keymap.del("n", "gra")
+  vim.keymap.del("n", "grn")
+  vim.keymap.del("n", "gri")
 
   -- Modes
   --   normal_mode = "n",
@@ -30,18 +29,17 @@ M.global_keymaps = function()
   -- keymap("n", "<C-l>", "<C-w>l", opts)
   -- Toggle hybrid relative line numbers
   -- :set nu for absolute
-  keymap("n", "<leader>nn", ":set nu rnu!<CR>", opts)
+  keymap("n", "<leader>nn", "<cmd>set nu rnu!<cr>", opts)
 
   -- Move to first word instead of beginning of line
   keymap("n", "0", "^", opts)
 
   -- splits
-  keymap("n", "<leader>w", ":vsplit<CR>", opts)
-  --keymap("n", "<leader>h", ":split<CR>", opts) who uses h-split anyway
+  keymap("n", "<leader>w", "<cmd>vsplit<cr>", opts)
 
   -- Save file
-  keymap("n", "<leader>ss", ":silent w<CR>", opts)
-  keymap("n", "<leader>sa", ":wa<CR>", opts)
+  keymap("n", "<leader>ss", "<cmd>silent w<cr>", opts)
+  keymap("n", "<leader>sa", "<cmd>wa<cr>", opts)
 
   -- Up/Down faster
   keymap("n", "J", "5j<CR>", opts)
@@ -51,20 +49,20 @@ M.global_keymaps = function()
   keymap("n", "<leader>J", "J<CR>", opts)
 
   -- Resize with arrows
-  keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-  keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-  keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-  keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+  keymap("n", "<C-Up>", "<cmd>resize -2<cr>", opts)
+  keymap("n", "<C-Down>", "<cmd>resize +2<cr>", opts)
+  keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", opts)
+  keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", opts)
 
   -- Navigate buffers
-  keymap("n", "<S-l>", ":bnext<CR>", opts)
-  keymap("n", "<S-h>", ":bprevious<CR>", opts)
+  keymap("n", "<S-l>", "<cmd>bnext<cr>", opts)
+  keymap("n", "<S-h>", "<cmd>bprevious<cr>", opts)
 
   -- Clear highlights
   keymap("n", "<leader>nh", "<cmd>nohlsearch<CR>", opts)
 
   -- Close buffers
-  keymap("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
+  keymap("n", "<S-q>", function() Snacks.bufdelete() end, opts)
 
   -- Close Window
   -- keymap("n", "<C-q>", ":close<CR>", opts)
@@ -85,36 +83,11 @@ M.global_keymaps = function()
   keymap("v", "<C-J>", ":m '>+1<CR>gv=gv", opts)
 
   -- Oil
-  keymap("n", "<leader>ee", ":Oil<CR>", opts)
+  keymap("n", "<leader>ee", "<cmd>Oil<cr>", opts)
 
-  -- Telescope
-  -- keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
-  -- keymap("n", "<leader>ff", ":silent! Telescope find_files<CR>", opts)
-  -- keymap("n", "<leader>ft", ":silent! Telescope live_grep_args<CR>", opts)
-  -- keymap("n", "<leader>fp", ":silent! Telescope projects<CR>", opts)
-  -- keymap("n", "<leader>fb", ":silent! Telescope buffers<CR>", opts)
-  -- keymap("n", "<leader>fr", ":silent! Telescope oldfiles<CR>", opts)
-
-  -- Telescope/Git
-  -- keymap("n", "<leader>fx", ":Telescope git_status<CR>", opts)
-  -- keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
-  -- keymap("n", "<leader>fv", ":Telescope git_branches<CR>", opts)
-  -- keymap("n", "<leader>fs", ":Telescope git_stash<CR>", opts)
-  --
-  --
-  -- Done in fzf.lua
-  -- keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
-  -- keymap("n", "<leader>ft", ":FzfLua live_grep<CR>", opts)
-  -- keymap("n", "<leader>fb", ":FzfLua buffers<CR>", opts)
-  -- keymap("n", "<leader>fr", ":FzfLua oldfiles<CR>", opts)
-  --
-  -- keymap("n", "<leader>fx", ":FzfLua git_status<CR>", opts)
-  -- keymap("n", "<leader>fc", ":FzfLua git_commits<CR>", opts)
-  -- keymap("n", "<leader>fv", ":FzfLua git_branches<CR>", opts)
-  -- keymap("n", "<leader>fs", ":FzfLua git_stash<CR>", opts)
-  -- keymap("n", "<leader>fw", ":FzfLua resume<CR>", opts)
-  keymap("n", "<leader>GG", ":Git<CR>", opts)
-  keymap("n", "<leader>Gd", ":DiffviewOpen<CR>", opts)
+  -- Git
+  keymap("n", "<leader>GG", "<cmd>Git<cr>", opts)
+  keymap("n", "<leader>Gd", "<cmd>DiffviewOpen<cr>", opts)
 
   -- Comment
   keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
@@ -136,24 +109,24 @@ M.global_keymaps = function()
   keymap("n", "gh", ":ClangdSwitchSourceHeader<CR>", opts)
 
   -- Overseer
-  keymap("n", "<leader>or", ":OverseerRun<CR>", opts)
-  keymap("n", "<leader>oo", ":OverseerToggle<CR>", opts)
+  keymap("n", "<leader>or", "<cmd>OverseerRun<cr>", opts)
+  keymap("n", "<leader>oo", "<cmd>OverseerToggle<cr>", opts)
 
   -- Noice
-  keymap("n", "<leader>mm", ":Noice<CR>", opts)
-  keymap("n", "<leader>ml", ":NoiceLast<CR>", opts)
-  keymap("n", "<leader>mh", ":NoiceHistory<CR>", opts)
+  keymap("n", "<leader>mm", "<cmd>Noice<cr>", opts)
+  keymap("n", "<leader>ml", "<cmd>NoiceLast<cr>", opts)
+  keymap("n", "<leader>mh", "<cmd>NoiceHistory<cr>", opts)
 
-  keymap("n", "<C-q>", ":SmartQuit<CR>", opts)
-  keymap("n", "<C-Q>", ":SmartQuit<CR>", opts)
+  keymap("n", "<C-q>", "<cmd>SmartQuit<cr>", opts)
+  keymap("n", "<C-Q>", "<cmd>SmartQuit<cr>", opts)
 
   -- Ai
-  keymap({ "n", "v", "x" }, "<leader>aa", ":CopilotChatToggle<CR>", opts)
-  keymap({ "n", "v", "x" }, "<leader>ax", ":CopilotChatReset<CR>", opts)
-  keymap({ "n", "v", "x" }, "<leader>ac", ":CopilotChatCommitStaged<CR>", opts)
-  keymap({ "v", "x" }, "<leader>af", ":CopilotChatFix<CR>", opts)
-  keymap({ "v", "x" }, "<leader>ae", ":CopilotChatExplain<CR>", opts)
-  keymap({ "v", "x" }, "<leader>ao", ":CopilotChatOptimize<CR>", opts)
+  keymap({ "n", "v", "x" }, "<leader>aa", "<cmd>CopilotChatToggle<cr>", opts)
+  keymap({ "n", "v", "x" }, "<leader>ax", "<cmd>CopilotChatReset<cr>", opts)
+  keymap({ "n", "v", "x" }, "<leader>ac", "<cmd>CopilotChatCommitStaged<cr>", opts)
+  keymap({ "v", "x" }, "<leader>af", "<cmd>CopilotChatFix<cr>", opts)
+  keymap({ "v", "x" }, "<leader>ae", "<cmd>CopilotChatExplain<cr>", opts)
+  keymap({ "v", "x" }, "<leader>ao", "<cmd>CopilotChatOptimize<cr>", opts)
 end
 
 M.lsp_keymaps = function(client, bufnr)
@@ -170,23 +143,23 @@ M.lsp_keymaps = function(client, bufnr)
   end
 
   local function toggle_codelens()
-    if client.server_capabilities.codeLensProvider then
-      if vim.g.codelens_visible then
-        vim.g.codelens_visible = false
-        vim.lsp.codelens.clear(client, bufnr)
-      end
+    if vim.g.codelens_visible then
+      vim.g.codelens_visible = false
+      vim.lsp.codelens.clear(client, bufnr)
     else
-      vim.g.codelens_visible = true
-      vim.lsp.codelens.refresh()
-      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        group = vim.api.nvim_create_augroup("CodeLensToggle", { clear = true }),
-        buffer = bufnr,
-        callback = function()
-          if vim.g.codelens_enabled then
-            vim.lsp.codelens.refresh()
-          end
-        end,
-      })
+      if client.server_capabilities.codeLensProvider then
+        vim.g.codelens_visible = true
+        vim.lsp.codelens.refresh()
+        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+          group = vim.api.nvim_create_augroup("CodeLensToggle", { clear = true }),
+          buffer = bufnr,
+          callback = function()
+            if vim.g.codelens_visible then
+              vim.lsp.codelens.refresh()
+            end
+          end,
+        })
+      end
     end
   end
 
@@ -216,11 +189,7 @@ M.lsp_keymaps = function(client, bufnr)
   keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.jump({ count = 1 })<CR>", opts(bufnr, "Jump to next"))
   keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.jump({ count = -1 })<CR>", opts(bufnr, "Jump to prev"))
   keymap("n", "<leader>lt", toggle_hints, opts(bufnr, "Toggle inlay hints"))
-  keymap("n", "<leader>lc", toggle_codelens, opts(bufnr, "Toggle inlay hints"))
-
-  -- Fzf
-  -- keymap("n", "gR", "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>", opts(bufnr, "Fzf references"))
-  -- keymap( "gD", "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>")
+  keymap("n", "<leader>lc", toggle_codelens, opts(bufnr, "Toggle code lens"))
 end
 
 return M
