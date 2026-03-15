@@ -23,9 +23,6 @@ local function pick(picker, opts)
               final_opts.cwd = path.path
               final_opts.cwd_prompt = true
 
-              -- Debug final options
-              print("Final cwd:", final_opts.cwd)
-
               require("fzf-lua")[picker](final_opts)
             end
           end,
@@ -42,6 +39,7 @@ end
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
+  event = "VeryLazy",
   opts = function(_, opts)
     local fzf = require("fzf-lua")
     local config = fzf.config
@@ -106,35 +104,40 @@ return {
         },
       },
 
-      ui_select = function(fzf_opts, items)
-        return vim.tbl_deep_extend("force", fzf_opts, {
-          prompt = " ",
-          winopts = {
-            title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
-            title_pos = "center",
-          },
-        }, fzf_opts.kind == "codeaction" and {
-          winopts = {
-            layout = "vertical",
-            height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
-            width = 0.5,
+      ui_select = function(ui_opts, items)
+        local title = vim.trim((ui_opts.prompt or "Select"):gsub("%s*:%s*$", ""))
+        local is_codeaction = ui_opts.kind == "codeaction"
 
-            preview = #vim.lsp.get_clients({ bufnr = 0, name = "vtsls" }) > 0 and {
+        if is_codeaction then
+          return {
+            prompt = " ",
+            winopts = {
+              title = " " .. title .. " ",
+              title_pos = "center",
               layout = "vertical",
-              vertical = "down:15,border-top",
-              hidden = "hidden",
-            } or {
-              layout = "vertical",
-              vertical = "down:15,border-top",
+              height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
+              width = 0.5,
+              preview = #vim.lsp.get_clients({ bufnr = 0, name = "vtsls" }) > 0 and {
+                layout = "vertical",
+                vertical = "down:15,border-top",
+                hidden = "hidden",
+              } or {
+                layout = "vertical",
+                vertical = "down:15,border-top",
+              },
             },
-          },
-        } or {
+          }
+        end
+
+        return {
+          prompt = " ",
           winopts = {
+            title = " " .. title .. " ",
+            title_pos = "center",
             width = 0.5,
-            -- height is number of items, with a max of 80% screen height
-            height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+            height = math.floor(math.min(vim.o.lines * 0.8, math.max(#items + 2, 4)) + 0.5),
           },
-        })
+        }
       end,
       winopts = {
         width = 0.8,
