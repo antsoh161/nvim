@@ -135,7 +135,7 @@ return {
             title = " " .. title .. " ",
             title_pos = "center",
             width = 0.5,
-            height = math.floor(math.min(vim.o.lines * 0.8, math.max(#items + 2, 4)) + 0.5),
+            height = math.floor(math.min(vim.o.lines * 0.8, math.max(#items + 4, 6)) + 0.5)
           },
         }
       end,
