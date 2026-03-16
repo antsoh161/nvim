@@ -62,7 +62,9 @@ M.global_keymaps = function()
   keymap("n", "<leader>nh", "<cmd>nohlsearch<CR>", opts)
 
   -- Close buffers
-  keymap("n", "<S-q>", function() Snacks.bufdelete() end, opts)
+  keymap("n", "<S-q>", function()
+    Snacks.bufdelete()
+  end, opts)
 
   -- Close Window
   -- keymap("n", "<C-q>", ":close<CR>", opts)
@@ -93,15 +95,49 @@ M.global_keymaps = function()
   keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
   keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
   -- DAP
-  keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-  keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-  keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-  keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-  keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-  keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-  keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-  keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-  keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+  keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
+  keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step into" })
+  keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step over" })
+  keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step out" })
+  keymap("n", "<leader>df", "<cmd>lua require'dap'.run_to_cursor()<cr>", { silent = true, desc = "DAP Run to cursor" })
+  keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { silent = true, desc = "DAP Run last" })
+  keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", { silent = true, desc = "DAP Terminate" })
+  keymap("n", "<leader>de", "<cmd>lua require'dap'.disconnect()<cr>", { silent = true, desc = "DAP Disconnect" })
+
+  keymap(
+    "n",
+    "<leader>db",
+    "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+    { silent = true, desc = "DAP Toggle breakpoint" }
+  )
+
+  keymap("n", "<leader>dB", function()
+    require("dap").set_breakpoint(vim.fn.input("Condition: "))
+  end, { silent = true, desc = "DAP Conditional breakpoint" })
+
+  keymap("n", "<leader>dp", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log message: "))
+  end, { silent = true, desc = "DAP Log point" })
+
+  keymap("n", "<leader>dh", function()
+    require("dap.ui.widgets").hover()
+  end, { silent = true, desc = "DAP Hover eval" })
+  keymap("v", "<leader>dh", function()
+    require("dap.ui.widgets").hover()
+  end, { silent = true, desc = "DAP Hover eval" })
+  keymap("n", "<leader>dk", function()
+    require("dap.ui.widgets").preview()
+  end, { silent = true, desc = "DAP Preview" })
+
+  keymap("n", "<leader>dU", "<cmd>lua require'dap'.up()<cr>", { silent = true, desc = "DAP Frame up" })
+  keymap("n", "<leader>dD", "<cmd>lua require'dap'.down()<cr>", { silent = true, desc = "DAP Frame down" })
+
+  -- keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", { silent = true, desc = "DAP UI toggle" })
+  keymap("n", "<leader>du", "<cmd>DapViewOpen<cr>", { silent = true, desc = "DAP Ui Open" })
+  keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", { silent = true, desc = "DAP REPL toggle" })
+  keymap("n", "<leader>ds", function()
+    require("dap").continue()
+  end, { silent = true, desc = "DAP Start/Select config" })
 
   -- Lsp
   keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
@@ -165,11 +201,6 @@ M.lsp_keymaps = function(client, bufnr)
 
   local function opts(_bufnr, desc)
     return { buffer = _bufnr, desc = "LSP " .. desc }
-  end
-
-  local function on_list(options)
-    vim.fn.setqflist({}, " ", options)
-    vim.cmd.cfirst()
   end
 
   local keymap = vim.keymap.set
