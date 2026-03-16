@@ -1,13 +1,25 @@
 local function prompt_executable()
   local co = coroutine.running()
-  vim.ui.input(
-    { prompt = "Path to executable: ", default = vim.fn.getcwd() .. "/", completion = "file" },
-    function(path)
-      vim.schedule(function()
-        coroutine.resume(co, path)
-      end)
+  local default_path = vim.fn.getcwd() .. "/"
+  local cargo_toml = vim.fn.findfile("Cargo.toml", vim.fn.getcwd())
+  if cargo_toml ~= "" then
+    local lines = vim.fn.readfile(cargo_toml)
+    for _, line in ipairs(lines) do
+      local name = line:match('^name%s*=%s*"(.-)"')
+      if name then
+        local candidate = vim.fn.getcwd() .. "/target/debug/" .. name
+        if vim.fn.filereadable(candidate) == 1 then
+          default_path = candidate
+        end
+        break
+      end
     end
-  )
+  end
+  vim.ui.input({ prompt = "Path to executable: ", default = default_path, completion = "file" }, function(path)
+    vim.schedule(function()
+      coroutine.resume(co, path)
+    end)
+  end)
   return coroutine.yield()
 end
 
@@ -46,7 +58,7 @@ end
 
 local function prompt_stop_on_entry()
   local co = coroutine.running()
-  vim.ui.select({ 'No', 'Yes' }, { prompt = "Stop on entry?" }, function(choice)
+  vim.ui.select({ "No", "Yes" }, { prompt = "Stop on entry?" }, function(choice)
     vim.schedule(function()
       coroutine.resume(co, choice == "Yes")
     end)
@@ -55,9 +67,8 @@ local function prompt_stop_on_entry()
 end
 
 return {
-  -- Launch configs
   {
-    name = "C/C++ Launch (codelldb)",
+    name = "Rust Launch (codelldb)",
     type = "codelldb",
     request = "launch",
     program = prompt_executable,
@@ -65,7 +76,7 @@ return {
     stopOnEntry = prompt_stop_on_entry,
   },
   {
-    name = "C/C++ Launch (GDB)",
+    name = "Rust Launch (GDB)",
     type = "gdb",
     request = "launch",
     program = prompt_executable,
@@ -73,36 +84,13 @@ return {
     stopAtBeginningOfMainSubprogram = prompt_stop_on_entry,
   },
   {
-    name = "C/C++ Launch (cppdbg)",
-    type = "cppdbg",
-    request = "launch",
-    program = prompt_executable,
-    cwd = "${workspaceFolder}",
-    stopAtEntry = prompt_stop_on_entry,
-    MIMode = "gdb",
-    miDebuggerPath = "/usr/bin/gdb",
-    setupCommands = {
-      { description = "Enable pretty-printing", text = "-enable-pretty-printing", ignoreFailures = true },
-    },
-  },
-
-  -- Attach configs
-  {
-    name = "C/C++ Attach to PID (codelldb)",
+    name = "Rust Attach to PID (codelldb)",
     type = "codelldb",
     request = "attach",
     pid = prompt_pid,
   },
   {
-    name = "C/C++ Attach to PID (GDB)",
-    type = "gdb",
-    request = "attach",
-    pid = prompt_pid,
-  },
-
-  -- Remote / gdbserver
-  {
-    name = "C/C++ Attach to gdbserver",
+    name = "Rust Attach to gdbserver",
     type = "gdb",
     request = "attach",
     target = prompt_gdbserver,

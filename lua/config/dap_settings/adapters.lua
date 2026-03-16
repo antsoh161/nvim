@@ -1,29 +1,36 @@
-if vim.fn.has("win32") == 1 then
-  Path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/Scripts/python"
-else
-  Path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
-end
+local mason = vim.fn.stdpath("data") .. "/mason/packages"
+
+local debugpy_python = mason .. "/debugpy/venv/bin/python"
+local cpptools_bin = mason .. "/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
+local codelldb_bin = mason .. "/codelldb/extension/adapter/codelldb"
+local bashdb_bin = mason .. "/bash-debug-adapter/bash-debug-adapter"
+local bashdb_script = mason .. "/bash-debug-adapter/extension/bashdb_dir"
 
 return {
   gdb = {
     type = "executable",
     command = "gdb",
-    args = { "-i", "dap" },
+    args = { "--interpreter=dap", "--quiet" },
   },
-  -- Assume cpptools via mason
+
+  codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      command = codelldb_bin,
+      args = { "--port", "${port}" },
+    },
+  },
+
   cppdbg = {
     id = "cppdbg",
     type = "executable",
-    command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+    command = cpptools_bin,
     options = {
       detached = false,
     },
   },
-  codelldb = {
-    type = "server",
-    host = "127.0.0.1",
-    port = 13000, --  Use the port printed out or specified with `--port`
-  },
+
   python = function(callback, config)
     if config.request == "attach" then
       ---@diagnostic disable-next-line: undefined-field
@@ -34,19 +41,23 @@ return {
         type = "server",
         port = assert(port, "`connect.port` is required for a python `attach` configuration"),
         host = host,
-        options = {
-          source_filetype = "python",
-        },
+        options = { source_filetype = "python" },
       })
     else
       callback({
         type = "executable",
-        command = Path,
+        command = debugpy_python,
         args = { "-m", "debugpy.adapter" },
-        options = {
-          source_filetype = "python",
-        },
+        options = { source_filetype = "python" },
       })
     end
   end,
+
+  ["bash-debug"] = {
+    type = "executable",
+    command = bashdb_bin,
+    env = {
+      BASHDB_HOME = bashdb_script,
+    },
+  },
 }
