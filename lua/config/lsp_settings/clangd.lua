@@ -9,6 +9,6 @@ return {
     "--function-arg-placeholders",
     "--malloc-trim",
     "--fallback-style=llvm",
-    -- "query-driver /path/to/your/gcc"
+    "--query-driver=/opt/gcc-snapshot/usr/bin/g++"
   },
 }
