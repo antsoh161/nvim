@@ -14,6 +14,7 @@ M.lsp_servers = {
   "ruff",
   "systemd_lsp",
   "basedpyright",
+  "wgsl_analyzer",
 }
 
 local function can_merge(v)
