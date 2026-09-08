@@ -11,7 +11,6 @@ M.lsp_servers = {
   "clangd",
   "rust_analyzer",
   "dockerls",
-  "cmake",
   "ruff",
   "systemd_lsp",
   "basedpyright",

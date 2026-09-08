@@ -6,7 +6,6 @@ return {
     "--clang-tidy",
     "--header-insertion=iwyu",
     "--completion-style=detailed",
-    "--function-arg-placeholders",
     "--malloc-trim",
     "--fallback-style=llvm",
     "--query-driver=/opt/gcc-snapshot/usr/bin/g++"
