@@ -90,6 +90,10 @@ fzf.setup({
   defaults = {
     formatter = "path.dirname_first",
   },
+  ---@diagnostic disable-next-line: assign-type-mismatch, missing-fields
+  hls = {
+    search = false,
+  },
   previewers = {
     builtin = {
       extensions = {
