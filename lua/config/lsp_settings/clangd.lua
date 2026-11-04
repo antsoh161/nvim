@@ -8,6 +8,6 @@ return {
     "--completion-style=detailed",
     "--malloc-trim",
     "--fallback-style=llvm",
-    "--query-driver=/opt/gcc-snapshot/usr/bin/g++"
+    "--query-driver=/opt/**/bin/g++"
   },
 }

@@ -43,12 +43,7 @@ require("blink.cmp").setup({
         columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
         treesitter = { "lsp" },
       },
-      auto_show = function(ctx)
-        if ctx.mode ~= "cmdline" and vim.b.copilot_accept_tick == vim.b.changedtick then
-          return false
-        end
-        return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
-      end,
+      auto_show = false,
     },
     documentation = {
       auto_show = true,
