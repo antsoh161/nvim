@@ -44,6 +44,9 @@ require("blink.cmp").setup({
         treesitter = { "lsp" },
       },
       auto_show = function(ctx)
+        if ctx.mode ~= "cmdline" and vim.b.copilot_accept_tick == vim.b.changedtick then
+          return false
+        end
         return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
       end,
     },
