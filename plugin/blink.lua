@@ -38,6 +38,7 @@ require("blink.cmp").setup({
     menu = {
       enabled = true,
       border = "rounded",
+      direction_priority = { "n", "s" },
       draw = {
         columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
         treesitter = { "lsp" },
@@ -165,3 +166,4 @@ do
     return open(pair, neigh_pattern)
   end
 end
+

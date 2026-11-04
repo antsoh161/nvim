@@ -155,14 +155,6 @@ M.global_keymaps = function()
 
   keymap("n", "<C-q>", "<cmd>SmartQuit<cr>", opts)
   keymap("n", "<C-Q>", "<cmd>SmartQuit<cr>", opts)
-
-  -- Ai
-  keymap({ "n", "v", "x" }, "<leader>aa", "<cmd>CopilotChatToggle<cr>", opts)
-  keymap({ "n", "v", "x" }, "<leader>ax", "<cmd>CopilotChatReset<cr>", opts)
-  keymap({ "n", "v", "x" }, "<leader>ac", "<cmd>CopilotChatCommitStaged<cr>", opts)
-  keymap({ "v", "x" }, "<leader>af", "<cmd>CopilotChatFix<cr>", opts)
-  keymap({ "v", "x" }, "<leader>ae", "<cmd>CopilotChatExplain<cr>", opts)
-  keymap({ "v", "x" }, "<leader>ao", "<cmd>CopilotChatOptimize<cr>", opts)
 end
 
 M.lsp_keymaps = function(client, bufnr)
